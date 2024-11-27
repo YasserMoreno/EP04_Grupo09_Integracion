@@ -3,6 +3,7 @@ const morgan = require('morgan');
 
 const registrarPlatillo = require('./routes/Platillo/registrarPlatillo');
 const obtenerPlatillo = require('./routes/Platillo/obtenerPlatillo');
+const obtenerPlatillos = require('./routes/Platillo/obtenerPlatillos');
 const actualizarPlatillo = require('./routes/Platillo/actualizarPlatillo');
 const eliminarPlatillo = require('./routes/Platillo/eliminarPlatillo');
 
@@ -18,6 +19,7 @@ app.use(morgan('dev'));
 //Rutas
 app.use(registrarPlatillo)
 app.use(obtenerPlatillo)
+app.use(obtenerPlatillos)
 app.use(actualizarPlatillo)
 app.use(eliminarPlatillo)
 
