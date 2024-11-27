@@ -16,6 +16,11 @@ const obtenerCliente = require('./routes/Cliente/obtenerCliente');
 const actualizarCliente = require('./routes/Cliente/actualizarCliente');
 const eliminarCliente = require('./routes/Cliente/eliminarCliente');
 
+const registrarMesero = require('./routes/Mesero/registrarMesero');
+const obtenerMesero = require('./routes/Mesero/obtenerMesero');
+const actualizarMesero = require('./routes/Mesero/actualizarMesero');
+const eliminarMesero = require('./routes/Mesero/eliminarMesero');
+
 const app = express();
 app.use(express.json());
 app.use(morgan('dev'));
@@ -35,5 +40,10 @@ app.use(registrarCliente)
 app.use(obtenerCliente)
 app.use(actualizarCliente)
 app.use(eliminarCliente)
+
+app.use(registrarMesero)
+app.use(obtenerMesero)
+app.use(actualizarMesero)
+app.use(eliminarMesero)
 
 module.exports = app
