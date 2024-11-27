@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-// Modelo para Meseros
 const MeseroSchema = new mongoose.Schema(
   {
     nombre: { 
@@ -22,7 +21,7 @@ const MeseroSchema = new mongoose.Schema(
     usuario: { 
       type: String, 
       required: true, 
-      unique: true // Asegura que no haya nombres de usuario duplicados
+      unique: true 
     },
 
     password: { 
@@ -36,7 +35,7 @@ const MeseroSchema = new mongoose.Schema(
     }
   },
   { 
-    timestamps: true // Añade automáticamente createdAt y updatedAt
+    timestamps: true 
   }
 );
 

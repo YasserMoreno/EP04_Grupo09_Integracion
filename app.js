@@ -11,10 +11,7 @@ const obtenerCategorias = require('./routes/Categoria/obtenerCategorias');
 const actualizarCategoria = require('./routes/Categoria/actualizarCategoria');
 const eliminarCategoria = require('./routes/Categoria/eliminarCategoria');
 
-//Obteniendo Express
 const app = express();
-
-//Middleware
 app.use(express.json());
 app.use(morgan('dev'));
 

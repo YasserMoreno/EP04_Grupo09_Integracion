@@ -5,7 +5,6 @@ const connectiondb = mongoose.connection
 
 const mongoConnection = () => {
 
-    //Mensajes de la conección
     connectiondb.once('connected', _ =>{
         console.log(`La base de datos esta conectada en ${MONGO_URI}`);
     })

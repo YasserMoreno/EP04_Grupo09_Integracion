@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-// Modelo para Mesa
 const MesaSchema = new mongoose.Schema(
   {
     numero: { 
@@ -9,7 +8,7 @@ const MesaSchema = new mongoose.Schema(
       unique: true 
     }
   },
-  { timestamps: true } // Añade automáticamente createdAt y updatedAt
+  { timestamps: true } 
 );
 
 const Mesa = mongoose.model("Mesa", MesaSchema);
