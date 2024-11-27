@@ -17,7 +17,7 @@ const actualizarCliente = require('./routes/Cliente/actualizarCliente');
 const eliminarCliente = require('./routes/Cliente/eliminarCliente');
 
 const registrarMesero = require('./routes/Mesero/registrarMesero');
-const obtenerMesero = require('./routes/Mesero/obtenerMesero');
+const obtenerMeseros = require('./routes/Mesero/obtenerMeseros');
 const actualizarMesero = require('./routes/Mesero/actualizarMesero');
 const eliminarMesero = require('./routes/Mesero/eliminarMesero');
 
@@ -47,7 +47,7 @@ app.use(actualizarCliente)
 app.use(eliminarCliente)
 
 app.use(registrarMesero)
-app.use(obtenerMesero)
+app.use(obtenerMeseros)
 app.use(actualizarMesero)
 app.use(eliminarMesero)
 
