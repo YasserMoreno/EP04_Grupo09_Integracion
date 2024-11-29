@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-// Modelo para Clientes
 const ClienteSchema = new mongoose.Schema(
     {
       nombre: { 

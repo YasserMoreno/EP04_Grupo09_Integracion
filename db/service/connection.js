@@ -1,11 +1,11 @@
-const mongoose =require('mongoose');
+const mongoose = require('mongoose');
+require('dotenv').config();
 
-const MONGO_URI = 'mongodb://127.0.0.1:27017/Tagliatore';
-const connectiondb = mongoose.connection
+const MONGO_URI = process.env.MONGO_URI;
+const connectiondb = mongoose.connection;
 
 const mongoConnection = () => {
 
-    //Mensajes de la conección
     connectiondb.once('connected', _ =>{
         console.log(`La base de datos esta conectada en ${MONGO_URI}`);
     })
