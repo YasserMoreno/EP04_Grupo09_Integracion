@@ -1,10 +1,13 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 const Mesero = require("../../db/models/Mesero");
+const secretKey = process.env.VALIDATE_KEY;
 
 const router = express.Router();
 
 router.post("/api/login", async (req, res) => {
+
   try {
     const { usuario, password } = req.body;
 
@@ -17,7 +20,7 @@ router.post("/api/login", async (req, res) => {
     const mesero = await Mesero.findOne({ usuario });
 
     if (!mesero) {
-      return res.status(404).send({ error: "Mesero no encontrado" });
+      return res.status(404).send({ error: "Usuario no encontrado" });
     }
 
     const isMatch = await bcrypt.compare(password, mesero.password);
@@ -26,12 +29,25 @@ router.post("/api/login", async (req, res) => {
       return res.status(401).send({ error: "Contraseña incorrecta" });
     }
 
-    res.status(200).send({ mensaje: "Inicio de sesión exitoso", mesero });
+    const tokenKey = secretKey;
+
+    if (!tokenKey) {
+      throw new Error("Clave secreta para JWT no encontrada en .env");
+    }
+
+    const token = jwt.sign({ id: mesero._id }, tokenKey, { expiresIn: "1h" });
+
+    const respuesta = {
+      pass: true,
+      message: "Autenticación Exitosa",
+      userName: mesero.usuario,
+      token,
+    };
+
+    res.status(200).json(respuesta);
   } catch (error) {
-    console.error("Error al iniciar sesión:", error); // Log error for debugging
-    res
-      .status(500)
-      .send({ error: `Error al iniciar sesión: ${error.message}` });
+    console.error("Error al iniciar sesión:", error);
+    res.status(500).send({ error: `Error al iniciar sesión: ${error.message}` });
   }
 });
 
