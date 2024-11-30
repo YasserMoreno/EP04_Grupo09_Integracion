@@ -23,7 +23,7 @@ router.post("/api/meseros", async (req, res) => {
 
     res.status(201).send({
       mesero: nuevoMesero,
-      mensaje: "Messsero registrado exitosamente con contraseña encriptada",
+      mensaje: "Mesero registrado exitosamente con contraseña encriptada",
     });
   } catch (error) {
     res
