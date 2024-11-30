@@ -8,15 +8,14 @@ router.post("/api/meseros", async (req, res) => {
   try {
     const { nombre, correo, telefono, usuario, password } = req.body;
 
-    // Encriptar la contraseña
-    const hashedPassword = await bcrypt.hash(password, 10); // 10 es el "salt rounds"
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     const nuevoMesero = new Mesero({
       nombre,
       correo,
       telefono,
       usuario,
-      password: hashedPassword, // Almacenar la contraseña encriptada
+      password: hashedPassword,
       activo: true,
     });
 
@@ -24,7 +23,7 @@ router.post("/api/meseros", async (req, res) => {
 
     res.status(201).send({
       mesero: nuevoMesero,
-      mensaje: "Mesero registrado exitosamente con contraseña encriptada",
+      mensaje: "Messsero registrado exitosamente con contraseña encriptada",
     });
   } catch (error) {
     res
