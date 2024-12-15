@@ -2,11 +2,13 @@ import { Component, AfterViewChecked, Inject, PLATFORM_ID, ViewChild, ElementRef
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { SidebarComponent } from "../../components/sidebar/sidebar.component";
 import ApexCharts from 'apexcharts';
+import { HeaderComponent } from "../../components/header/header.component";
+import { FooterComponent } from "../../components/footer/footer.component";
 
 @Component({
   selector: 'app-intranet',
   standalone: true,
-  imports: [SidebarComponent, CommonModule],
+  imports: [SidebarComponent, CommonModule, HeaderComponent, FooterComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './intranet.component.html',
   styleUrls: ['./intranet.component.css']

@@ -1,10 +1,11 @@
 import { Component, AfterViewInit, Inject, PLATFORM_ID, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [],
+  imports: [RouterModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
