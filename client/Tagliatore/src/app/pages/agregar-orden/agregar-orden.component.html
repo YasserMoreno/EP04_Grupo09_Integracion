@@ -1,0 +1,176 @@
+<!--  Body Wrapper -->
+<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+data-sidebar-position="fixed" data-header-position="fixed">
+<app-sidebar></app-sidebar>
+<!--  Main wrapper -->
+<div class="body-wrapper">
+  <!--Header-->
+  <app-header></app-header>
+<div class="container-fluid">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+            <div>
+                <h5 class="card-title fw-semibold mb-4">Nueva Orden</h5>
+                <p class="mb-0">Complete el formulario para crear una nueva orden.</p>
+            </div>
+            <div>
+                <a routerLink="/ordenes" class="btn btn-primary me-2 d-flex">
+                    <i class="bi bi-chevron-left"></i>
+                    <span class="d-none d-md-block" style="margin-left: 10px;">Volver a Ordenes</span> <span class="d-block d-md-none">Pro</span>
+                </a>
+            </div>
+        </div>
+        <hr/>
+        <form id="ordenForm" action="/ruta-del-servidor" method="POST">
+            <!-- Campo Mesa -->
+            <div class="mb-3">
+                <label for="mesaId" class="form-label">Mesa</label>
+                <select 
+                    class="form-select" 
+                    id="mesaId" 
+                    name="mesaId" 
+                    required
+                >
+                    <option value="" selected disabled>Selecciona una mesa</option>
+                    <!-- Opciones dinámicas aquí -->
+                </select>
+            </div>
+
+            <!-- Campo Cliente -->
+            <div class="mb-3">
+                <label for="clienteId" class="form-label">Cliente</label>
+                <select 
+                    class="form-select" 
+                    id="clienteId" 
+                    name="clienteId" 
+                    required
+                >
+                    <option value="" selected disabled>Selecciona un cliente</option>
+                    <!-- Opciones dinámicas aquí -->
+                </select>
+            </div>
+
+            <!-- Campo Mesero -->
+            <div class="mb-3">
+                <label for="meseroId" class="form-label">Mesero</label>
+                <select 
+                    class="form-select" 
+                    id="meseroId" 
+                    name="meseroId" 
+                    required
+                >
+                    <option value="" selected disabled>Selecciona un mesero</option>
+                    <!-- Opciones dinámicas aquí -->
+                </select>
+            </div>
+
+            <!-- Campo Platillos -->
+            <div class="mb-3">
+                <label for="platillos" class="form-label">Platillos</label>
+                <div id="platillos">
+                    <!-- Sección para agregar platillos dinámicamente -->
+                    <div class="input-group mb-2">
+                        <select 
+                            class="form-select" 
+                            name="platillos[0][platilloId]" 
+                            required
+                        >
+                            <option value="" selected disabled>Selecciona un platillo</option>
+                            <!-- Opciones dinámicas aquí -->
+                        </select>
+                        <input 
+                            type="number" 
+                            class="form-control" 
+                            name="platillos[0][cantidad]" 
+                            placeholder="Cantidad" 
+                            min="1" 
+                            required
+                        >
+                        <button type="button" class="btn btn-danger remove-platillo">Eliminar</button>
+                    </div>
+                </div>
+                <button type="button" id="addPlatillo" class="btn btn-secondary">Agregar Platillo</button>
+            </div>
+
+            <!-- Campo Estado -->
+            <div class="mb-3">
+                <label for="estado" class="form-label">Estado</label>
+                <select 
+                    class="form-select" 
+                    id="estado" 
+                    name="estado" 
+                    required
+                >
+                    <option value="pendiente" selected>Pendiente</option>
+                    <option value="entregado">Entregado</option>
+                    <option value="cancelado">Cancelado</option>
+                </select>
+            </div>
+
+            <!-- Botones -->
+            <div class="d-flex justify-content-end">
+                <button type="reset" class="btn btn-secondary me-2">Limpiar</button>
+                <button type="submit" class="btn btn-primary">Agregar</button>
+            </div>
+        </form>
+      </div>
+    </div>
+</div>
+<!--Start Footer-->
+<app-footer></app-footer>
+<!--End Footer-->
+
+</div>
+</div>
+<script src="../../../assets/libs/jquery/dist/jquery.min.js"></script>
+<script src="../../../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../../../assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+<script src="../../../assets/libs/simplebar/dist/simplebar.js"></script>
+<script src="../../../assets/js/sidebarmenu.js"></script>
+<script src="../../../assets/js/app.min.js"></script>
+<!-- <script src="../../../assets/js/dashboard.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts@latest"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.getElementById('addPlatillo').addEventListener('click', function() {
+        const platillosDiv = document.getElementById('platillos');
+        const index = platillosDiv.children.length;
+        const div = document.createElement('div');
+        div.classList.add('input-group', 'mb-2');
+
+        div.innerHTML = `
+            <select 
+                class="form-select" 
+                name="platillos[${index}][platilloId]" 
+                required
+            >
+                <option value="" selected disabled>Selecciona un platillo</option>
+                <!-- Opciones dinámicas aquí -->
+            </select>
+            <input 
+                type="number" 
+                class="form-control" 
+                name="platillos[${index}][cantidad]" 
+                placeholder="Cantidad" 
+                min="1" 
+                required
+            >
+            <button type="button" class="btn btn-danger remove-platillo">Eliminar</button>
+        `;
+
+        platillosDiv.appendChild(div);
+
+        div.querySelector('.remove-platillo').addEventListener('click', function() {
+            div.remove();
+        });
+    });
+
+    document.querySelectorAll('.remove-platillo').forEach(button => {
+        button.addEventListener('click', function() {
+            button.parentElement.remove();
+        });
+    });
+</script>

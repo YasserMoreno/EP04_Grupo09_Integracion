@@ -6,6 +6,11 @@ import { ClientesComponent } from './pages/clientes/clientes.component';
 import { OrdenesComponent } from './pages/ordenes/ordenes.component';
 import { CategoriasComponent } from './pages/categorias/categorias.component';
 import { MeserosComponent } from './pages/meseros/meseros.component';
+import { AgregarPlatilloComponent } from './pages/agregar-platillo/agregar-platillo.component';
+import { AgregarClienteComponent } from './pages/agregar-cliente/agregar-cliente.component';
+import { AgregarOrdenComponent } from './pages/agregar-orden/agregar-orden.component';
+import { AgregarCategoriaComponent } from './pages/agregar-categoria/agregar-categoria.component';
+import { AgregarMeseroComponent } from './pages/agregar-mesero/agregar-mesero.component';
 
 export const routes: Routes = [
 
@@ -26,20 +31,40 @@ export const routes: Routes = [
         component: PlantillosComponent
     },
     {
+        path: "agregar-platillo",
+        component: AgregarPlatilloComponent
+    },
+    {
         path:"clientes",
         component: ClientesComponent
+    },
+    {
+        path: "agregar-cliente",
+        component: AgregarClienteComponent
     },
     {
         path: "ordenes",
         component: OrdenesComponent
     },
     {
+        path: "agregar-orden",
+        component: AgregarOrdenComponent
+    },
+    {
         path: "categorias",
         component: CategoriasComponent
     },
     {
+        path: "agregar-categoria",
+        component: AgregarCategoriaComponent
+    },
+    {
         path: "meseros",
         component: MeserosComponent
+    },
+    {
+        path: "agregar-mesero",
+        component: AgregarMeseroComponent
     }
 
 ];

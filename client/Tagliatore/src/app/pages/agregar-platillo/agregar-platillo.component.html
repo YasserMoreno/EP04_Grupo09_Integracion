@@ -1,0 +1,115 @@
+<!--  Body Wrapper -->
+<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+data-sidebar-position="fixed" data-header-position="fixed">
+<app-sidebar></app-sidebar>
+<!--  Main wrapper -->
+<div class="body-wrapper">
+  <!--Header-->
+  <app-header></app-header>
+<div class="container-fluid">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+            <div>
+                <h5 class="card-title fw-semibold mb-4">Nuevo Platillo</h5>
+                <p class="mb-0">Complete el formulario para crear una nuevo platillo.</p>
+            </div>
+            <div>
+                <a routerLink="/platillos" class="btn btn-primary me-2 d-flex">
+                    <i class="bi bi-chevron-left"></i>
+                    <span class="d-none d-md-block" style="margin-left: 10px;">Volver a Platillos</span> <span class="d-block d-md-none">Pro</span>
+                </a>
+            </div>
+        </div>
+        <hr/>
+        <form id="platilloForm" action="/ruta-del-servidor" method="POST" enctype="multipart/form-data">
+            <!-- Campo Nombre -->
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre del Platillo</label>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    id="nombre" 
+                    name="nombre" 
+                    placeholder="Ingresa el nombre del platillo" 
+                    required
+                >
+            </div>
+
+            <!-- Campo Ingredientes -->
+            <div class="mb-3">
+                <label for="ingredientes" class="form-label">Ingredientes</label>
+                <textarea 
+                    class="form-control" 
+                    id="ingredientes" 
+                    name="ingredientes" 
+                    rows="3" 
+                    placeholder="Ingresa los ingredientes, separados por comas" 
+                    required
+                ></textarea>
+            </div>
+
+            <!-- Campo Precio -->
+            <div class="mb-3">
+                <label for="precio" class="form-label">Precio</label>
+                <input 
+                    type="number" 
+                    class="form-control" 
+                    id="precio" 
+                    name="precio" 
+                    placeholder="Ingresa el precio del platillo" 
+                    step="0.01" 
+                    required
+                >
+            </div>
+
+            <!-- Campo Imágenes -->
+            <div class="mb-3">
+                <label for="imagenes" class="form-label">Imágenes</label>
+                <input 
+                    type="file" 
+                    class="form-control" 
+                    id="imagenes" 
+                    name="imagenes" 
+                    multiple
+                >
+            </div>
+
+            <!-- Campo Categoría -->
+            <div class="mb-3">
+                <label for="categoriaId" class="form-label">Categoría</label>
+                <select 
+                    class="form-select" 
+                    id="categoriaId" 
+                    name="categoriaId" 
+                    required
+                >
+                    <option value="" selected disabled>Selecciona una categoría</option>
+                    <!-- Opciones dinámicas aquí -->
+                </select>
+            </div>
+
+            <!-- Botones -->
+            <div class="d-flex justify-content-end">
+                <button type="reset" class="btn btn-secondary me-2">Reiniciar</button>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </div>
+        </form>
+      </div>
+    </div>
+</div>
+<!--Start Footer-->
+<app-footer></app-footer>
+<!--End Footer-->
+
+</div>
+</div>
+<script src="../../../assets/libs/jquery/dist/jquery.min.js"></script>
+<script src="../../../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../../../assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+<script src="../../../assets/libs/simplebar/dist/simplebar.js"></script>
+<script src="../../../assets/js/sidebarmenu.js"></script>
+<script src="../../../assets/js/app.min.js"></script>
+<!-- <script src="../../../assets/js/dashboard.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts@latest"></script>

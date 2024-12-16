@@ -1,1 +1,111 @@
-<p>meseros works!</p>
+<!--  Body Wrapper -->
+<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+data-sidebar-position="fixed" data-header-position="fixed">
+<app-sidebar></app-sidebar>
+<!--  Main wrapper -->
+<div class="body-wrapper">
+  <!--Header-->
+<app-header></app-header>
+<div class="container-fluid">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+            <div>
+                <h5 class="card-title fw-semibold mb-4">Meseros</h5>
+                <p class="mb-0">This is a sample page </p>
+            </div>
+            <div>
+                <a routerLink="/agregar-mesero" class="btn btn-primary me-2 d-flex">
+                    <i class="bi bi-plus-circle"></i>
+                    <span class="d-none d-md-block" style="margin-left: 10px;">Agregar Mesero</span> <span class="d-block d-md-none">Pro</span>
+                </a>
+            </div>
+        </div>
+        <hr/>
+        <div class="table-responsive">
+            <table class="table text-nowrap align-middle mb-0">
+              <thead>
+                <tr class="border-2 border-bottom border-primary border-0"> 
+                  <th scope="col" class="ps-0">Page Title</th>
+                  <th scope="col" >Link</th>
+                  <th scope="col" class="text-center">Pageviews</th>
+                  <th scope="col" class="text-center">Page Value</th>
+                </tr>
+              </thead>
+              <tbody class="table-group-divider">
+                <tr>
+                  <th scope="row" class="ps-0 fw-medium">
+                    <span class="table-link1 text-truncate d-block">Welcome to our
+                      website</span>
+                  </th>
+                  <td>
+                    <a href="javascript:void(0)" class="link-primary text-dark fw-medium d-block">/index.html</a>
+                  </td>
+                  <td class="text-center fw-medium">18,456</td>
+                  <td class="text-center fw-medium">$2.40</td>
+                </tr>
+                <tr>
+                  <th scope="row" class="ps-0 fw-medium">
+                    <span class="table-link1 text-truncate d-block">Modern Admin
+                      Dashboard Template</span>
+                  </th>
+                  <td>
+                    <a href="javascript:void(0)" class="link-primary text-dark fw-medium d-block">/dashboard</a>
+                  </td>
+                  <td class="text-center fw-medium">17,452</td>
+                  <td class="text-center fw-medium">$0.97</td>
+                </tr>
+                <tr>
+                  <th scope="row" class="ps-0 fw-medium">
+                    <span class="table-link1 text-truncate d-block">Explore our
+                      product catalog</span>
+                  </th>
+                  <td>
+                    <a href="javascript:void(0)" class="link-primary text-dark fw-medium d-block">/product-checkout</a>
+                  </td>
+                  <td class="text-center fw-medium">12,180</td>
+                  <td class="text-center fw-medium">$7,50</td>
+                </tr>
+                <tr>
+                  <th scope="row" class="ps-0 fw-medium">
+                    <span class="table-link1 text-truncate d-block">Comprehensive
+                      User Guide</span>
+                  </th>
+                  <td>
+                    <a href="javascript:void(0)" class="link-primary text-dark fw-medium d-block">/docs</a>
+                  </td>
+                  <td class="text-center fw-medium">800</td>
+                  <td class="text-center fw-medium">$5,50</td>
+                </tr>
+                <tr>
+                  <th scope="row" class="ps-0 fw-medium border-0">
+                    <span class="table-link1 text-truncate d-block">Check out our
+                      services</span>
+                  </th>
+                  <td class="border-0">
+                    <a href="javascript:void(0)" class="link-primary text-dark fw-medium d-block">/services</a>
+                  </td>
+                  <td class="text-center fw-medium border-0">1300</td>
+                  <td class="text-center fw-medium border-0">$2,15</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+    </div>
+</div>
+<!--Start Footer-->
+<app-footer></app-footer>
+<!--End Footer-->
+
+</div>
+</div>
+<script src="../../../assets/libs/jquery/dist/jquery.min.js"></script>
+<script src="../../../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../../../assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+<script src="../../../assets/libs/simplebar/dist/simplebar.js"></script>
+<script src="../../../assets/js/sidebarmenu.js"></script>
+<script src="../../../assets/js/app.min.js"></script>
+<!-- <script src="../../../assets/js/dashboard.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts@latest"></script>

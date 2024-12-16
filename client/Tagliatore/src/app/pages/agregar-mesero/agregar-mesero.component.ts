@@ -5,12 +5,12 @@ import { SidebarComponent } from "../../components/sidebar/sidebar.component";
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-ordenes',
+  selector: 'app-agregar-mesero',
   standalone: true,
   imports: [FooterComponent, HeaderComponent, SidebarComponent, RouterModule],
-  templateUrl: './ordenes.component.html',
-  styleUrl: './ordenes.component.css'
+  templateUrl: './agregar-mesero.component.html',
+  styleUrl: './agregar-mesero.component.css'
 })
-export class OrdenesComponent {
+export class AgregarMeseroComponent {
 
 }
