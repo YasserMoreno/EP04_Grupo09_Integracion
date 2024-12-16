@@ -30,7 +30,7 @@ export const routes: Routes = [
   },
   {
     path: 'platillos',
-    component: PlantillosComponent,
+    component: PlatillosComponent,
   },
   {
     path: 'agregar-platillo',
