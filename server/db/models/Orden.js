@@ -8,6 +8,18 @@ const OrdenSchema = new mongoose.Schema(
       ref: "Mesa", 
       required: true 
     },
+
+    clienteId: { 
+      type: mongoose.Schema.Types.ObjectId, 
+      ref: "Cliente", 
+      required: true 
+    },
+
+    meseroId: { 
+      type: mongoose.Schema.Types.ObjectId, 
+      ref: "Mesero", 
+      required: true 
+    },
     
 
     platillos: [

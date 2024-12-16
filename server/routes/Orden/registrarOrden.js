@@ -9,6 +9,8 @@ router.post('/api/ordenes', async (req, res) => {
 
     const nuevaOrden = new Orden({
       mesaId,
+      clienteId,
+      meseroId,
       platillos,
       estado: 'pendiente'
     });
