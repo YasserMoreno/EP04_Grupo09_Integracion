@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { IntranetComponent } from './pages/intranet/intranet.component';
-import { PlantillosComponent } from './pages/plantillos/plantillos.component';
+import { PlatillosComponent } from './pages/platillos/platillos.component';
 import { ClientesComponent } from './pages/clientes/clientes.component';
 import { OrdenesComponent } from './pages/ordenes/ordenes.component';
 import { CategoriasComponent } from './pages/categorias/categorias.component';
@@ -28,7 +28,7 @@ export const routes: Routes = [
     },
     {
         path:"platillos",
-        component: PlantillosComponent
+        component: PlatillosComponent
     },
     {
         path: "agregar-platillo",
