@@ -1,0 +1,86 @@
+<!--  Body Wrapper -->
+<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+data-sidebar-position="fixed" data-header-position="fixed">
+<app-sidebar></app-sidebar>
+<!--  Main wrapper -->
+<div class="body-wrapper">
+  <!--Header-->
+  <app-header></app-header>
+<div class="container-fluid">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+            <div>
+                <h5 class="card-title fw-semibold mb-4">Platillos</h5>
+                <p class="mb-0">This is a sample page </p>
+            </div>
+            <div>
+                <a routerLink="/agregar-platillo" class="btn btn-primary me-2 d-flex">
+                    <i class="bi bi-plus-circle"></i>
+                    <span class="d-none d-md-block" style="margin-left: 10px;">Agregar Platillo</span> <span class="d-block d-md-none">Pro</span>
+                </a>
+            </div>
+        </div>
+        <hr/>
+        <div class="table-responsive">
+          <table class="table text-nowrap align-middle mb-0">
+            <thead>
+              <tr class="border-2 border-bottom border-primary border-0">
+                <th scope="col" class="text-left">Imagen</th>
+                <th scope="col" class="ps-0">Nombre</th>
+                <th scope="col">Ingredientes</th>
+                <th scope="col" class="text-center">Precio</th>
+                <th scope="col" class="text-center">Categoría</th>
+              </tr>
+            </thead>
+            <tbody class="table-group-divider">
+              <tr *ngFor="let platillo of platilloData">
+                <td class="text-left fw-medium">
+                  <!-- Imagen con lógica condicional usando {{}} -->
+                  <img src="{{ platillo.imagenes[0] ? platillo.imagenes[0] : 'https://www.technipages.com/wp-content/uploads/2020/12/enable-extensions-in-incognito-mode.png' }}" 
+                       alt="Imagen de {{ platillo.nombre }}" 
+                       class="img-thumbnail rounded-circle" 
+                       style="width: 80px; height: 80px; object-fit: cover;">
+                </td>
+                <td scope="row" class="ps-0 fw-medium">
+                  <span class="table-link1 text-truncate d-block">
+                    {{ platillo.nombre }}
+                  </span>
+                </td>
+                <td class="text-dark fw-medium" style="max-width: 200px; overflow: hidden; text-overflow: ellipsis; ">
+                  <span class="d-block break-word">
+                    {{ platillo.ingredientes.join(', ') }}
+                  </span>
+                </td>
+                <td class="text-center fw-medium">
+                  ${{ platillo.precio.toFixed(2) }}
+                </td>
+                <td scope="row" class="ps-0 fw-medium">
+                  <a routerLink="/categorias" class="d-block text-center">
+                    {{ platillo.categoriaId.nombre }}
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+              
+          
+          </div>
+      </div>
+    </div>
+</div>
+<!--Start Footer-->
+<app-footer></app-footer>
+<!--End Footer-->
+
+</div>
+</div>
+<script src="../../../assets/libs/jquery/dist/jquery.min.js"></script>
+<script src="../../../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../../../assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+<script src="../../../assets/libs/simplebar/dist/simplebar.js"></script>
+<script src="../../../assets/js/sidebarmenu.js"></script>
+<script src="../../../assets/js/app.min.js"></script>
+<!-- <script src="../../../assets/js/dashboard.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts@latest"></script>

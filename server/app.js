@@ -1,13 +1,16 @@
 const express = require("express");
 const morgan = require("morgan");
+const cors = require("cors");
 
 const registrarPlatillo = require("./routes/Platillo/registrarPlatillo");
 const obtenerPlatillo = require("./routes/Platillo/obtenerPlatillo");
+const indexPlatillo = require("./routes/Platillo/indexPlatillo");
 const actualizarPlatillo = require("./routes/Platillo/actualizarPlatillo");
 const eliminarPlatillo = require("./routes/Platillo/eliminarPlatillo");
 
 const registrarCategoria = require("./routes/Categoria/registrarCategoria");
 const obtenerCategorias = require("./routes/Categoria/obtenerCategorias");
+const obtenerCategoria = require("./routes/Categoria/obtenerCategoria");
 const actualizarCategoria = require("./routes/Categoria/actualizarCategoria");
 const eliminarCategoria = require("./routes/Categoria/eliminarCategoria");
 
@@ -30,15 +33,22 @@ const eliminarOrden = require("./routes/Orden/eliminarOrden");
 const app = express();
 app.use(express.json());
 app.use(morgan("dev"));
+app.use(cors({
+    origin: 'http://localhost:4200', 
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
 //Rutas
 app.use(registrarPlatillo);
 app.use(obtenerPlatillo);
+app.use(indexPlatillo);
 app.use(actualizarPlatillo);
 app.use(eliminarPlatillo);
 
 app.use(registrarCategoria);
 app.use(obtenerCategorias);
+app.use(obtenerCategoria);
 app.use(actualizarCategoria);
 app.use(eliminarCategoria);
 
