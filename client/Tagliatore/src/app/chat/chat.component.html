@@ -1,0 +1,30 @@
+<div class="chat-container overflow-auto">
+  <div class="message-list">
+      <div *ngFor="let message of messages" class="message"
+          [ngClass]="{'my-message': message.emisor === emisor, 'other-message': message.emisor !== emisor}">
+          <div class="d-flex flex-row comment-row p-3">
+              <div class="p-2"><img
+                      src="{{ message.emisor === 'Mesero' ? '../../../assets/images/profile/user-2.jpg' : '../../../assets/images/profile/user-1.jpg' }}"
+                      alt="user" width="50" class="rounded-circle"></div>
+              <div class="comment-text ps-2 ps-md-3 w-100">
+                  <h5 class="font-medium">{{ message.emisor }}</h5>
+                  <span class="message-content mb-1 mt-1 d-block">{{ message.mensaje }}</span>
+                  <div class="comment-footer d-md-flex align-items-center">
+                      <div class="text-muted fs-2 ms-auto mt-2 mt-md-0">{{ message.fecha | date:'yyyy-MM-dd HH:mm:ss' }}</div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
+
+<div class="input-area border-top p-3">
+  <div class="d-flex">
+      <input type="text" [(ngModel)]="newMessage" placeholder="Escribe tu mensaje..."
+          class="form-control ">
+      <button (click)="sendMessage()" class="btn btn-primary ms-2 rounded-pill px-3">Enviar</button>
+  </div>
+</div>

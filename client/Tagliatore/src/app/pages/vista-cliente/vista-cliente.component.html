@@ -1,0 +1,36 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-8 d-flex align-items-stretch">
+      <div class="card w-100">
+        <div class="card-body p-4">
+          <h5 class="card-title fw-semibold mb-4">Chat</h5>
+
+          <!-- Formulario de DNI -->
+          <div *ngIf="!dniIngresado" class="mb-4">
+            <form (ngSubmit)="validarDNI()">
+              <div class="form-group">
+                <label for="dni">Por favor, ingrese su DNI para continuar:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="dni"
+                  [(ngModel)]="dni"
+                  name="dni"
+                  required
+                  pattern="[0-9]{8}"
+                  maxlength="8">
+              </div>
+              <button type="submit" class="btn btn-primary mt-3">Continuar</button>
+            </form>
+          </div>
+
+          <!-- Chat -->
+          <div class="chat-container" *ngIf="dniIngresado">
+            <app-chat [dni]="dni"></app-chat>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4"></div>
+  </div>
+</div>
