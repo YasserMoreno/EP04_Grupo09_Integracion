@@ -19,6 +19,8 @@ import { EditarCategoriaComponent } from './pages/editar-categoria/editar-catego
 import { EditarClienteComponent } from './pages/editar-cliente/editar-cliente.component';
 import { EditarMeseroComponent } from './pages/editar-mesero/editar-mesero.component';
 import { EditarOrdenComponent } from './pages/editar-orden/editar-orden.component';
+import { LoginComponent } from './pages/login/login.component';
+import { loginGuard } from './guard/loginGuard/login.guard';
 
 export const routes: Routes = [
   {
@@ -31,71 +33,88 @@ export const routes: Routes = [
   },
   {
     path: 'intranet',
-    component: IntranetComponent
+    component: IntranetComponent,
+    canActivate: [loginGuard]
   },
   {
     path: 'platillos',
-    component: PlatillosComponent
+    component: PlatillosComponent,
+    canActivate: [loginGuard]
   },
   {
     path: 'agregar-platillo',
-    component: AgregarPlatilloComponent
+    component: AgregarPlatilloComponent,
+    canActivate: [loginGuard]
   },
   {
     path: 'editar-platillo/:id',
-    component: EditarPlatilloComponent
+    component: EditarPlatilloComponent,
+    canActivate: [loginGuard]
   },
   {
     path: 'clientes',
-    component: ClientesComponent
+    component: ClientesComponent,
+    canActivate: [loginGuard]
   },
   {
     path: 'agregar-cliente',
-    component: AgregarClienteComponent
+    component: AgregarClienteComponent,
+    canActivate: [loginGuard]
   },
   {
     path: 'editar-cliente/:id',
-    component: EditarClienteComponent
+    component: EditarClienteComponent,
+    canActivate: [loginGuard]
   },
   {
     path: 'ordenes',
-    component: OrdenesComponent
+    component: OrdenesComponent,
+    canActivate: [loginGuard]
   },
   {
     path: 'agregar-orden',
-    component: AgregarOrdenComponent
+    component: AgregarOrdenComponent,
+    canActivate: [loginGuard]
   },
   {
     path: 'editar-orden/:id',
-    component: EditarOrdenComponent
+    component: EditarOrdenComponent,
+    canActivate: [loginGuard]
   },
   {
     path: 'categorias',
-    component: CategoriasComponent
+    component: CategoriasComponent,
+    canActivate: [loginGuard]
   },
   {
     path: 'agregar-categoria',
-    component: AgregarCategoriaComponent
+    component: AgregarCategoriaComponent,
+    canActivate: [loginGuard]
   },
   {
     path: 'editar-categoria/:id',
-    component: EditarCategoriaComponent
+    component: EditarCategoriaComponent,
+    canActivate: [loginGuard]
   },
   {
     path: 'meseros',
-    component: MeserosComponent
+    component: MeserosComponent,
+    canActivate: [loginGuard]
   },
   {
     path: 'agregar-mesero',
-    component: AgregarMeseroComponent
+    component: AgregarMeseroComponent,
+    canActivate: [loginGuard]
   },
   {
     path: 'editar-mesero/:id',
-    component: EditarMeseroComponent
+    component: EditarMeseroComponent,
+    canActivate: [loginGuard]
   },
   {
     path: 'vista-chat',
-    component: VistaChatComponent
+    component: VistaChatComponent,
+    canActivate: [loginGuard]
   },
   {
     path: 'vista-cliente',
@@ -103,6 +122,11 @@ export const routes: Routes = [
   },
   { 
     path: 'chat', 
-    component: ChatComponent 
+    component: ChatComponent,
+    canActivate: [loginGuard]
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   }
 ];

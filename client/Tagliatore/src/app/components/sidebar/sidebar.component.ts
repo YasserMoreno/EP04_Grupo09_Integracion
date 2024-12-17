@@ -1,6 +1,7 @@
 import { Component, AfterViewInit, Inject, PLATFORM_ID, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { LoginService } from '../../services/loginService/login.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -12,10 +13,13 @@ import { RouterModule } from '@angular/router';
 })
 export class SidebarComponent implements AfterViewInit {
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private loginService: LoginService,
+    private router: Router 
+  ) {}
 
   ngAfterViewInit() {
-    // Verifica si estamos en el navegador antes de ejecutar la lógica
     if (isPlatformBrowser(this.platformId)) {
       this.setActiveLink();
     }
@@ -26,7 +30,6 @@ export class SidebarComponent implements AfterViewInit {
       const url = window.location.href;
       const path = url.replace(window.location.protocol + "//" + window.location.host + "/", "");
 
-      // Encuentra el link activo
       document.querySelectorAll("ul#sidebarnav a").forEach((link: any) => {
         if (link.href === url || link.href === path) {
           link.classList.add("active");
@@ -34,7 +37,6 @@ export class SidebarComponent implements AfterViewInit {
         }
       });
 
-      // Agregar listeners a los enlaces
       const menuLinks = document.querySelectorAll("#sidebarnav a");
       menuLinks.forEach((link: any) => {
         link.addEventListener("click", (e: Event) => this.onLinkClick(e, link));
@@ -85,4 +87,10 @@ export class SidebarComponent implements AfterViewInit {
       link.classList.remove("active");
     });
   }
+
+    logout() {
+      this.loginService.logout();
+      
+      this.router.navigate(['/login']);
+    }
 }
