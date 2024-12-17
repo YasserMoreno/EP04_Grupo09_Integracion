@@ -5,14 +5,14 @@ data-sidebar-position="fixed" data-header-position="fixed">
 <!--  Main wrapper -->
 <div class="body-wrapper">
   <!--Header-->
-  <app-header></app-header>
+<app-header></app-header>
 <div class="container-fluid">
     <div class="card">
       <div class="card-body">
         <div class="d-flex justify-content-between">
             <div>
-                <h5 class="card-title fw-semibold mb-4">Nuevo Categoría</h5>
-                <p class="mb-0">Complete el formulario para crear una nueva categoría.</p>
+                <h5 class="card-title fw-semibold mb-4">Editar Categoría</h5>
+                <p class="mb-0">Edite la categoría con el formulario.</p>
             </div>
             <div>
                 <a routerLink="/categorias" class="btn btn-primary me-2 d-flex">
@@ -22,7 +22,7 @@ data-sidebar-position="fixed" data-header-position="fixed">
             </div>
         </div>
         <hr/>
-        <form id="categoriaForm" (ngSubmit)="agregarCategoria()">
+        <form id="categoriaForm" (ngSubmit)=" guardarCambios()">
             <!-- Campo Nombre -->
             <div class="mb-3">
               <label for="nombre" class="form-label">Nombre</label>
@@ -45,15 +45,15 @@ data-sidebar-position="fixed" data-header-position="fixed">
                 id="descripcion" 
                 name="descripcion" 
                 rows="4" 
-                placeholder="Ingresa una descripción de la categoría"
-                [(ngModel)]="categoria.descripcion" 
+                placeholder="Ingresa una descripción"
+                [(ngModel)]="categoria.descripcion"
                 required
               ></textarea>
             </div>
           
             <!-- Botones -->
             <div class="d-flex justify-content-end">
-              <button type="submit" class="btn btn-primary">Agregar Categoría</button>
+              <button type="submit" class="btn btn-primary">Actualizar</button>
             </div>
           </form>
           

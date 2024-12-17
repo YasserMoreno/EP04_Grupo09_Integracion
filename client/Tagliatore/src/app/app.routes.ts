@@ -15,6 +15,7 @@ import { ChatComponent } from './chat/chat.component';
 import { VistaChatComponent } from './pages/vista-chat/vista-chat.component';
 import { VistaClienteComponent } from './pages/vista-cliente/vista-cliente.component';
 import { EditarPlatilloComponent } from './pages/editar-platillo/editar-platillo.component';
+import { EditarCategoriaComponent } from './pages/editar-categoria/editar-categoria.component';
 
 export const routes: Routes = [
   {
@@ -64,6 +65,10 @@ export const routes: Routes = [
   {
     path: 'agregar-categoria',
     component: AgregarCategoriaComponent
+  },
+  {
+    path: 'editar-categoria/:id',
+    component: EditarCategoriaComponent
   },
   {
     path: 'meseros',

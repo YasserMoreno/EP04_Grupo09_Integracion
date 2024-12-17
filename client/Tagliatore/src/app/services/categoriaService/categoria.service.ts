@@ -40,6 +40,38 @@ export class CategoriaService {
     );
   }
 
+  // Crear una nueva categoría (POST)
+  createCategoria(categoria: Categoria): Observable<Categoria> {
+    return this.http.post<Categoria>(this.urlCategorias, JSON.stringify(categoria), httpOptions).pipe(
+      tap(response => {
+        console.log('Categoría creada:', response);
+      }),
+      catchError(this.handleError)
+    );
+  }
+
+  // Actualizar una categoría existente (PUT)
+  updateCategoria(id: string, categoria: Categoria): Observable<Categoria> {
+    const url = `${this.urlCategorias}/${id}`;
+    return this.http.put<Categoria>(url, JSON.stringify(categoria), httpOptions).pipe(
+      tap(response => {
+        console.log('Categoría actualizada:', response);
+      }),
+      catchError(this.handleError)
+    );
+  }
+
+  // Eliminar una categoría (DELETE)
+  deleteCategoria(id: string): Observable<void> {
+    const url = `${this.urlCategorias}/${id}`;
+    return this.http.delete<void>(url, httpOptions).pipe(
+      tap(() => {
+        console.log('Categoría eliminada');
+      }),
+      catchError(this.handleError)
+    );
+  }
+
   // Manejo de errores centralizado
   private handleError(error: any) {
     console.error('Ocurrió un error:', error);

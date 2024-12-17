@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [FooterComponent, SidebarComponent, HeaderComponent, RouterModule, CommonModule],
   templateUrl: './platillos.component.html',
-  styleUrl: './platillos.component.css'
+  styleUrls: ['./platillos.component.css']
 })
 export class PlatillosComponent implements OnInit {
 
@@ -48,21 +48,28 @@ export class PlatillosComponent implements OnInit {
   }
 
   async deletePlatillo(id: string) {
-    try {
-      this.platilloService.deletePlatillo(id).subscribe({
-        next: response => {
-          console.log('Respuesta de eliminación:', response.mensaje);
-          this.mensajeDelete = response.mensaje; 
-          this.platilloData = this.platilloData.filter(platillo => platillo._id !== id);
-        },
-        error: err => {
-          console.error('Error al eliminar el platillo:', err.message);
-          this.mensajeDelete = 'Error al eliminar el platillo. Inténtelo de nuevo más tarde.';
-        }
-      });
-    } catch (err) {
-      console.error(`Error al procesar la eliminación del platillo: ${err}`);
-      this.mensajeDelete = 'Error al procesar la solicitud. Inténtelo de nuevo más tarde.';
+    // Confirmar antes de eliminar el platillo
+    const confirmDelete = window.confirm('¿Estás seguro de que deseas eliminar este platillo? Esta acción no se puede deshacer.');
+
+    if (confirmDelete) {
+      try {
+        this.platilloService.deletePlatillo(id).subscribe({
+          next: response => {
+            console.log('Respuesta de eliminación:', response.mensaje);
+            this.mensajeDelete = response.mensaje; 
+            this.platilloData = this.platilloData.filter(platillo => platillo._id !== id);
+          },
+          error: err => {
+            console.error('Error al eliminar el platillo:', err.message);
+            this.mensajeDelete = 'Error al eliminar el platillo. Inténtelo de nuevo más tarde.';
+          }
+        });
+      } catch (err) {
+        console.error(`Error al procesar la eliminación del platillo: ${err}`);
+        this.mensajeDelete = 'Error al procesar la solicitud. Inténtelo de nuevo más tarde.';
+      }
+    } else {
+      console.log('Eliminación cancelada.');
     }
   }
 }
