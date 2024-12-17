@@ -12,7 +12,7 @@ data-sidebar-position="fixed" data-header-position="fixed">
         <div class="d-flex justify-content-between">
             <div>
                 <h5 class="card-title fw-semibold mb-4">Meseros</h5>
-                <p class="mb-0">This is a sample page </p>
+                <p class="mb-0">Meseros registrados actualmente.</p>
             </div>
             <div>
                 <a routerLink="/agregar-mesero" class="btn btn-primary me-2 d-flex">
@@ -23,73 +23,50 @@ data-sidebar-position="fixed" data-header-position="fixed">
         </div>
         <hr/>
         <div class="table-responsive">
-            <table class="table text-nowrap align-middle mb-0">
-              <thead>
-                <tr class="border-2 border-bottom border-primary border-0"> 
-                  <th scope="col" class="ps-0">Page Title</th>
-                  <th scope="col" >Link</th>
-                  <th scope="col" class="text-center">Pageviews</th>
-                  <th scope="col" class="text-center">Page Value</th>
-                </tr>
-              </thead>
-              <tbody class="table-group-divider">
-                <tr>
-                  <th scope="row" class="ps-0 fw-medium">
-                    <span class="table-link1 text-truncate d-block">Welcome to our
-                      website</span>
-                  </th>
-                  <td>
-                    <a href="javascript:void(0)" class="link-primary text-dark fw-medium d-block">/index.html</a>
-                  </td>
-                  <td class="text-center fw-medium">18,456</td>
-                  <td class="text-center fw-medium">$2.40</td>
-                </tr>
-                <tr>
-                  <th scope="row" class="ps-0 fw-medium">
-                    <span class="table-link1 text-truncate d-block">Modern Admin
-                      Dashboard Template</span>
-                  </th>
-                  <td>
-                    <a href="javascript:void(0)" class="link-primary text-dark fw-medium d-block">/dashboard</a>
-                  </td>
-                  <td class="text-center fw-medium">17,452</td>
-                  <td class="text-center fw-medium">$0.97</td>
-                </tr>
-                <tr>
-                  <th scope="row" class="ps-0 fw-medium">
-                    <span class="table-link1 text-truncate d-block">Explore our
-                      product catalog</span>
-                  </th>
-                  <td>
-                    <a href="javascript:void(0)" class="link-primary text-dark fw-medium d-block">/product-checkout</a>
-                  </td>
-                  <td class="text-center fw-medium">12,180</td>
-                  <td class="text-center fw-medium">$7,50</td>
-                </tr>
-                <tr>
-                  <th scope="row" class="ps-0 fw-medium">
-                    <span class="table-link1 text-truncate d-block">Comprehensive
-                      User Guide</span>
-                  </th>
-                  <td>
-                    <a href="javascript:void(0)" class="link-primary text-dark fw-medium d-block">/docs</a>
-                  </td>
-                  <td class="text-center fw-medium">800</td>
-                  <td class="text-center fw-medium">$5,50</td>
-                </tr>
-                <tr>
-                  <th scope="row" class="ps-0 fw-medium border-0">
-                    <span class="table-link1 text-truncate d-block">Check out our
-                      services</span>
-                  </th>
-                  <td class="border-0">
-                    <a href="javascript:void(0)" class="link-primary text-dark fw-medium d-block">/services</a>
-                  </td>
-                  <td class="text-center fw-medium border-0">1300</td>
-                  <td class="text-center fw-medium border-0">$2,15</td>
-                </tr>
-              </tbody>
-            </table>
+          <table class="table text-nowrap align-middle mb-0">
+            <thead>
+              <tr class="border-2 border-bottom border-primary border-0">
+                <th scope="col" class="ps-0">Nombre</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Teléfono</th>
+                <th scope="col">Usuario</th>
+                <th scope="col" class="text-center">Activo</th>
+                <th scope="col" class="text-center">Acciones</th>
+              </tr>
+            </thead>
+            <tbody class="table-group-divider">
+              <tr *ngFor="let mesero of meseros">
+                <th scope="row" class="ps-0 fw-medium">
+                  <span class="table-link1 text-truncate d-block">{{ mesero.nombre }}</span>
+                </th>
+                <td>
+                  <span class="text-truncate d-block">{{ mesero.correo }}</span>
+                </td>
+                <td>
+                  <span class="text-truncate d-block">{{ mesero.telefono }}</span>
+                </td>
+                <td>
+                  <span class="text-truncate d-block">{{ mesero.usuario }}</span>
+                </td>
+                <td class="text-center fw-medium">
+                  <span class="badge" [ngClass]="mesero.activo ? 'bg-success' : 'bg-warning'">
+                    {{ mesero.activo ? 'Activo' : 'Inactivo' }}
+                  </span>
+                </td>
+                <td class="text-center">
+                  <div class="d-flex flex-column">
+                    <button class="btn btn-secondary mb-2" routerLink="/editar-mesero/{{mesero._id}}">
+                      Editar
+                    </button>
+                    <button class="btn btn-danger" (click)="deleteMesero(mesero._id)">
+                    Eliminar
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          
           </div>
       </div>
     </div>

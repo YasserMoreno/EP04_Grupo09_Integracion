@@ -5,7 +5,7 @@ data-sidebar-position="fixed" data-header-position="fixed">
 <!--  Main wrapper -->
 <div class="body-wrapper">
   <!--Header-->
-  <app-header></app-header>
+<app-header></app-header>
 <div class="container-fluid">
     <div class="card">
       <div class="card-body">
@@ -22,7 +22,7 @@ data-sidebar-position="fixed" data-header-position="fixed">
             </div>
         </div>
         <hr/>
-        <form id="meseroForm" (ngSubmit)="agregarMesero()">
+        <form id="meseroForm" (ngSubmit)="updateMesero()">
   
             <!-- Campo Nombre -->
             <div class="mb-3">
@@ -117,7 +117,7 @@ data-sidebar-position="fixed" data-header-position="fixed">
           
             <!-- Botones -->
             <div class="d-flex justify-content-end">
-              <button type="submit" class="btn btn-primary">Agregar</button>
+              <button type="submit" class="btn btn-primary">Actualizar</button>
             </div>
           </form>
           
