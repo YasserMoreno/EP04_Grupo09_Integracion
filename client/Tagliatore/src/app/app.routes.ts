@@ -16,6 +16,7 @@ import { VistaChatComponent } from './pages/vista-chat/vista-chat.component';
 import { VistaClienteComponent } from './pages/vista-cliente/vista-cliente.component';
 import { EditarPlatilloComponent } from './pages/editar-platillo/editar-platillo.component';
 import { EditarCategoriaComponent } from './pages/editar-categoria/editar-categoria.component';
+import { EditarClienteComponent } from './pages/editar-cliente/editar-cliente.component';
 
 export const routes: Routes = [
   {
@@ -49,6 +50,10 @@ export const routes: Routes = [
   {
     path: 'agregar-cliente',
     component: AgregarClienteComponent
+  },
+  {
+    path: 'editar-cliente/:id',
+    component: EditarClienteComponent
   },
   {
     path: 'ordenes',

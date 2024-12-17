@@ -11,8 +11,8 @@ data-sidebar-position="fixed" data-header-position="fixed">
       <div class="card-body">
         <div class="d-flex justify-content-between">
             <div>
-                <h5 class="card-title fw-semibold mb-4">Nuevo Cliente</h5>
-                <p class="mb-0">Complete el formulario para crear una nuevo cliente.</p>
+                <h5 class="card-title fw-semibold mb-4">Editar Cliente</h5>
+                <p class="mb-0">Edite al cliente con el formulario.</p>
             </div>
             <div>
                 <a routerLink="/clientes" class="btn btn-primary me-2 d-flex">
@@ -22,7 +22,7 @@ data-sidebar-position="fixed" data-header-position="fixed">
             </div>
         </div>
         <hr/>
-        <form (ngSubmit)="agregarCliente()" #clienteForm="ngForm">
+        <form (ngSubmit)="actualizarCliente()" #clienteForm="ngForm">
             <!-- Campo Nombre -->
             <div class="mb-3">
               <label for="nombre" class="form-label">Nombre</label>
@@ -31,7 +31,7 @@ data-sidebar-position="fixed" data-header-position="fixed">
                 class="form-control" 
                 id="nombre" 
                 name="nombre" 
-                [(ngModel)]="cliente.nombre" 
+                [(ngModel)]="cliente.nombre"
                 placeholder="Ingresa el nombre completo" 
                 required
               >
@@ -45,7 +45,7 @@ data-sidebar-position="fixed" data-header-position="fixed">
                 class="form-control" 
                 id="correo" 
                 name="correo" 
-                [(ngModel)]="cliente.correo" 
+                [(ngModel)]="cliente.correo"
                 placeholder="Ingresa el correo electrónico" 
                 required
               >
@@ -59,7 +59,7 @@ data-sidebar-position="fixed" data-header-position="fixed">
                 class="form-control" 
                 id="telefono" 
                 name="telefono" 
-                [(ngModel)]="cliente.telefono" 
+                [(ngModel)]="cliente.telefono"
                 placeholder="Ingresa el número de teléfono" 
                 required
               >
@@ -73,7 +73,7 @@ data-sidebar-position="fixed" data-header-position="fixed">
                 class="form-control" 
                 id="dni" 
                 name="dni" 
-                [(ngModel)]="cliente.dni" 
+                [(ngModel)]="cliente.dni"
                 placeholder="Ingresa el número de DNI" 
                 required
               >
@@ -81,7 +81,7 @@ data-sidebar-position="fixed" data-header-position="fixed">
           
             <!-- Botones -->
             <div class="d-flex justify-content-end">
-              <button type="submit" class="btn btn-primary" [disabled]="!clienteForm.form.valid">Agregar</button>
+              <button type="submit" class="btn btn-primary">Actualizar</button>
             </div>
           </form>
           
