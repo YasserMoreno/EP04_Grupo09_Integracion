@@ -12,7 +12,7 @@ data-sidebar-position="fixed" data-header-position="fixed">
         <div class="d-flex justify-content-between">
             <div>
                 <h5 class="card-title fw-semibold mb-4">Platillos</h5>
-                <p class="mb-0">This is a sample page </p>
+                <p class="mb-0">Lista de platillos existentes. </p>
             </div>
             <div>
                 <a routerLink="/agregar-platillo" class="btn btn-primary me-2 d-flex">
@@ -31,6 +31,7 @@ data-sidebar-position="fixed" data-header-position="fixed">
                 <th scope="col">Ingredientes</th>
                 <th scope="col" class="text-center">Precio</th>
                 <th scope="col" class="text-center">Categoría</th>
+                <th scope="col" class="text-center">Acciones</th>
               </tr>
             </thead>
             <tbody class="table-group-divider">
@@ -55,10 +56,18 @@ data-sidebar-position="fixed" data-header-position="fixed">
                 <td class="text-center fw-medium">
                   ${{ platillo.precio.toFixed(2) }}
                 </td>
-                <td scope="row" class="ps-0 fw-medium">
-                  <a routerLink="/categorias" class="d-block text-center">
+                <td scope="row" class="ps-0 fw-medium text-center">
                     {{ platillo.categoriaId.nombre }}
-                  </a>
+                </td>
+                <td scope="row" class="ps-0 fw-medium">
+                  <div class="d-flex flex-column">
+                    <button class="btn btn-secondary mb-2" routerLink="/editar-platillo/{{platillo._id}}">
+                      Editar
+                    </button>
+                    <button class="btn btn-danger" (click)="deletePlatillo(platillo._id)">
+                    Eliminar
+                    </button>
+                  </div>
                 </td>
               </tr>
             </tbody>

@@ -13,7 +13,7 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class CategoriasService {
+export class CategoriaService {
 
   private urlCategorias = "http://localhost:3000/api/categorias";
 

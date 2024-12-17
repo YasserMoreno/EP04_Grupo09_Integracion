@@ -14,67 +14,72 @@ import { AgregarMeseroComponent } from './pages/agregar-mesero/agregar-mesero.co
 import { ChatComponent } from './chat/chat.component';
 import { VistaChatComponent } from './pages/vista-chat/vista-chat.component';
 import { VistaClienteComponent } from './pages/vista-cliente/vista-cliente.component';
+import { EditarPlatilloComponent } from './pages/editar-platillo/editar-platillo.component';
 
 export const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
+    component: HomeComponent
   },
   {
     path: 'home',
-    component: HomeComponent,
+    component: HomeComponent
   },
   {
     path: 'intranet',
-    component: IntranetComponent,
+    component: IntranetComponent
   },
   {
     path: 'platillos',
-    component: PlatillosComponent,
+    component: PlatillosComponent
   },
   {
     path: 'agregar-platillo',
-    component: AgregarPlatilloComponent,
+    component: AgregarPlatilloComponent
+  },
+  {
+    path: 'editar-platillo/:id',
+    component: EditarPlatilloComponent
   },
   {
     path: 'clientes',
-    component: ClientesComponent,
+    component: ClientesComponent
   },
   {
     path: 'agregar-cliente',
-    component: AgregarClienteComponent,
+    component: AgregarClienteComponent
   },
   {
     path: 'ordenes',
-    component: OrdenesComponent,
+    component: OrdenesComponent
   },
   {
     path: 'agregar-orden',
-    component: AgregarOrdenComponent,
+    component: AgregarOrdenComponent
   },
   {
     path: 'categorias',
-    component: CategoriasComponent,
+    component: CategoriasComponent
   },
   {
     path: 'agregar-categoria',
-    component: AgregarCategoriaComponent,
+    component: AgregarCategoriaComponent
   },
   {
     path: 'meseros',
-    component: MeserosComponent,
+    component: MeserosComponent
   },
   {
     path: 'agregar-mesero',
-    component: AgregarMeseroComponent,
+    component: AgregarMeseroComponent
   },
   {
     path: 'vista-chat',
-    component: VistaChatComponent,
+    component: VistaChatComponent
   },
   {
     path: 'vista-cliente',
-    component: VistaClienteComponent,
+    component: VistaClienteComponent
   },
   { 
     path: 'chat', 

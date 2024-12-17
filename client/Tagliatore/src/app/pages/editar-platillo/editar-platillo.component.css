@@ -1,0 +1,6 @@
+.img-preview {
+    height: 80px;
+    object-fit: contain; /* Mantiene la relación de aspecto y evita distorsión */
+    width: 100%; /* Opcional: ajusta el ancho al contenedor */
+  }
+  

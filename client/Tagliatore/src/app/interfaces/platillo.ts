@@ -1,7 +1,7 @@
 import { Categoria } from "./categoria";
 
 export interface Platillo {
-    id?: string; 
+    _id: string; 
     nombre: string;
     ingredientes: string[];
     precio: number;

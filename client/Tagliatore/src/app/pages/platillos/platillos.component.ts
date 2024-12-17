@@ -15,11 +15,11 @@ import { CommonModule } from '@angular/common';
   templateUrl: './platillos.component.html',
   styleUrl: './platillos.component.css'
 })
-
 export class PlatillosComponent implements OnInit {
 
-  platilloData: Platillo[] = [];  // Se mantendrá un array de platillos
+  platilloData: Platillo[] = []; 
   categoriaData: Categoria | null = null;
+  mensajeDelete: string | undefined;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,7 +27,6 @@ export class PlatillosComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Llamar al servicio para obtener todos los platillos
     this.getPlatillos();
   }
 
@@ -37,16 +36,33 @@ export class PlatillosComponent implements OnInit {
     this.platilloService.getPlatillos().subscribe({
       next: (response) => {
         console.log('Platillos obtenidos:', response);
-        this.platilloData = response; // Aquí asignamos todos los platillos a platilloData
-        // Si la respuesta incluye información sobre la categoría, asignarla
+        this.platilloData = response; 
         if (response.length > 0) {
-          this.categoriaData = response[0].categoriaId || null;  // Ejemplo: Asumimos que todos los platillos pueden tener una categoría común
+          this.categoriaData = response[0].categoriaId || null; 
         }
       },
-      error: (err) => {
+      error: (err: any) => {
         console.error('Error al obtener los platillos:', err);
       }
     });
   }
 
+  async deletePlatillo(id: string) {
+    try {
+      this.platilloService.deletePlatillo(id).subscribe({
+        next: response => {
+          console.log('Respuesta de eliminación:', response.mensaje);
+          this.mensajeDelete = response.mensaje; 
+          this.platilloData = this.platilloData.filter(platillo => platillo._id !== id);
+        },
+        error: err => {
+          console.error('Error al eliminar el platillo:', err.message);
+          this.mensajeDelete = 'Error al eliminar el platillo. Inténtelo de nuevo más tarde.';
+        }
+      });
+    } catch (err) {
+      console.error(`Error al procesar la eliminación del platillo: ${err}`);
+      this.mensajeDelete = 'Error al procesar la solicitud. Inténtelo de nuevo más tarde.';
+    }
+  }
 }
