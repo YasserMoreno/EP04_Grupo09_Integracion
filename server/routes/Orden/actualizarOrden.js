@@ -6,11 +6,11 @@ const router = express.Router();
 router.put('/api/ordenes/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const { estado } = req.body;
+    const { mesaId, clienteId, meseroId, platillos, estado } = req.body;
 
     const ordenActualizada = await Orden.findByIdAndUpdate(
       id,
-      { estado },
+      { mesaId, clienteId, meseroId, platillos, estado },
       { new: true, runValidators: true }
     );
 

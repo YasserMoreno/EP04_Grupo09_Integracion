@@ -3,10 +3,9 @@ const Cliente = require("../../db/models/Cliente");
 
 const router = express.Router();
 
-// Obtener todos los clientes
 router.get("/api/clientes", async (req, res) => {
   try {
-    const clientes = await Cliente.find(); // Busca todos los clientes
+    const clientes = await Cliente.find();
 
     if (!clientes.length) {
       return res.status(404).send({ mensaje: "No se encontraron clientes" });

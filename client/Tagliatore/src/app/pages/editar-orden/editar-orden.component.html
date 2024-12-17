@@ -11,8 +11,8 @@ data-sidebar-position="fixed" data-header-position="fixed">
       <div class="card-body">
         <div class="d-flex justify-content-between">
             <div>
-                <h5 class="card-title fw-semibold mb-4">Nueva Orden</h5>
-                <p class="mb-0">Complete el formulario para crear una nueva orden.</p>
+                <h5 class="card-title fw-semibold mb-4">Editar Orden</h5>
+                <p class="mb-0">Actualice la orden con el formulario.</p>
             </div>
             <div>
                 <a routerLink="/ordenes" class="btn btn-primary me-2 d-flex">
@@ -22,15 +22,15 @@ data-sidebar-position="fixed" data-header-position="fixed">
             </div>
         </div>
         <hr/>
-        <form id="ordenForm" (ngSubmit)="agregarOrden()" #ordenForm="ngForm">
+        <form id="ordenForm" (ngSubmit)="updateOrden()" #ordenForm="ngForm">
             <!-- Campo Mesa -->
             <div class="mb-3">
               <label for="mesaId" class="form-label">Mesa</label>
-              <select
-                class="form-select"
-                id="mesaId"
-                name="mesaId"
-                [(ngModel)]="orden.mesaId._id"
+              <select 
+                class="form-select" 
+                id="mesaId" 
+                name="mesaId" 
+                [(ngModel)]="orden.mesaId._id" 
                 required
               >
                 <option value="" selected disabled>Selecciona una mesa</option>
@@ -41,11 +41,11 @@ data-sidebar-position="fixed" data-header-position="fixed">
             <!-- Campo Cliente -->
             <div class="mb-3">
               <label for="clienteId" class="form-label">Cliente</label>
-              <select
-                class="form-select"
-                id="clienteId"
-                name="clienteId"
-                [(ngModel)]="orden.clienteId._id"
+              <select 
+                class="form-select" 
+                id="clienteId" 
+                name="clienteId" 
+                [(ngModel)]="orden.clienteId._id" 
                 required
               >
                 <option value="" selected disabled>Selecciona un cliente</option>
@@ -56,11 +56,11 @@ data-sidebar-position="fixed" data-header-position="fixed">
             <!-- Campo Mesero -->
             <div class="mb-3">
               <label for="meseroId" class="form-label">Mesero</label>
-              <select
-                class="form-select"
-                id="meseroId"
-                name="meseroId"
-                [(ngModel)]="orden.meseroId._id"
+              <select 
+                class="form-select" 
+                id="meseroId" 
+                name="meseroId" 
+                [(ngModel)]="orden.meseroId._id" 
                 required
               >
                 <option value="" selected disabled>Selecciona un mesero</option>
@@ -73,26 +73,26 @@ data-sidebar-position="fixed" data-header-position="fixed">
               <label for="platillos" class="form-label">Platillos</label>
               <div id="platillos">
                 <div *ngFor="let platillo of orden.platillos; let i = index" class="input-group mb-2">
-                  <select
-                    class="form-select"
-                    [(ngModel)]="platillo.platilloId._id"
-                    [name]="'platillos[' + i + '][platilloId]'"
-                    required
-                  >
-                    <option value="" selected disabled>Selecciona un platillo</option>
-                    <option *ngFor="let platilloOption of platillos" [value]="platilloOption._id">{{ platilloOption.nombre }}</option>
-                  </select>
-                  <input
-                    type="number"
-                    class="form-control"
-                    [(ngModel)]="platillo.cantidad"
-                    [name]="'platillos[' + i + '][cantidad]'"
-                    placeholder="Cantidad"
-                    min="1"
-                    required
-                  >
-                  <button type="button" class="btn btn-danger" (click)="removePlatillo(i)">Eliminar</button>
-                </div>
+                    <select 
+                      class="form-select" 
+                      [(ngModel)]="platillo.platilloId._id" 
+                      [name]="'platillos[' + i + '][platilloId]'" 
+                      required
+                    >
+                      <option value="" selected disabled>Selecciona un platillo</option>
+                      <option *ngFor="let platilloOption of platillos" [value]="platilloOption._id">{{ platilloOption.nombre }}</option>
+                    </select>
+                    <input 
+                      type="number" 
+                      class="form-control" 
+                      [(ngModel)]="platillo.cantidad" 
+                      [name]="'platillos[' + i + '][cantidad]'" 
+                      placeholder="Cantidad" 
+                      min="1" 
+                      required
+                    >
+                    <button type="button" class="btn btn-danger" (click)="removePlatillo(i)">Eliminar</button>
+                  </div>                  
               </div>
               <button type="button" class="btn btn-secondary" (click)="addPlatillo()">Agregar Platillo</button>
             </div>
@@ -100,10 +100,10 @@ data-sidebar-position="fixed" data-header-position="fixed">
             <!-- Campo Estado -->
             <div class="mb-3">
               <label for="estado" class="form-label">Estado</label>
-              <select
-                class="form-select"
-                id="estado"
-                name="estado"
+              <select 
+                class="form-select" 
+                id="estado" 
+                name="estado" 
                 [(ngModel)]="orden.estado"
                 required
               >

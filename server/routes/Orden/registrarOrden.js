@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.post('/api/ordenes', async (req, res) => {
   try {
-    const { mesaId, platillos } = req.body;
+    const { mesaId, clienteId, meseroId, platillos } = req.body;
 
     const nuevaOrden = new Orden({
       mesaId,

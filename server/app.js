@@ -28,9 +28,17 @@ const eliminarMesero = require("./routes/Mesero/eliminarMesero");
 const loginMesero = require("./routes/Mesero/loginMesero");
 
 const registrarOrden = require("./routes/Orden/registrarOrden");
-const obtenerOrden = require("./routes/Orden/obtenerOrden");
+const obtenerOrdenPorMesa = require("./routes/Orden/obtenerOrdenPorMesa");
+const obtenerOrdenPorId = require("./routes/Orden/obtenerOrdenPorId");
+const indexOrden = require("./routes/Orden/indexOrden");
 const actualizarOrden = require("./routes/Orden/actualizarOrden");
 const eliminarOrden = require("./routes/Orden/eliminarOrden");
+
+const indexMesa = require('./routes/Mesa/indexMesa');
+const obtenerMesa = require('./routes/Mesa/obtenerMesa');
+const eliminarMesa = require('./routes/Mesa/eliminarMesa');
+const actualizarMesa = require('./routes/Mesa/actualizarMesa');
+const registrarMesa = require('./routes/Mesa/registrarMesa');
 
 const app = express();
 app.use(express.json());
@@ -68,8 +76,16 @@ app.use(eliminarMesero);
 app.use(loginMesero);
 
 app.use(registrarOrden);
-app.use(obtenerOrden);
+app.use(obtenerOrdenPorMesa);
+app.use(obtenerOrdenPorId);
+app.use(indexOrden);
 app.use(actualizarOrden);
 app.use(eliminarOrden);
+
+app.use(indexMesa);    
+app.use(obtenerMesa);      
+app.use(eliminarMesa);    
+app.use(actualizarMesa);   
+app.use(registrarMesa);  
 
 module.exports = app;

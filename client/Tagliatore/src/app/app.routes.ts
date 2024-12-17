@@ -18,6 +18,7 @@ import { EditarPlatilloComponent } from './pages/editar-platillo/editar-platillo
 import { EditarCategoriaComponent } from './pages/editar-categoria/editar-categoria.component';
 import { EditarClienteComponent } from './pages/editar-cliente/editar-cliente.component';
 import { EditarMeseroComponent } from './pages/editar-mesero/editar-mesero.component';
+import { EditarOrdenComponent } from './pages/editar-orden/editar-orden.component';
 
 export const routes: Routes = [
   {
@@ -63,6 +64,10 @@ export const routes: Routes = [
   {
     path: 'agregar-orden',
     component: AgregarOrdenComponent
+  },
+  {
+    path: 'editar-orden/:id',
+    component: EditarOrdenComponent
   },
   {
     path: 'categorias',
