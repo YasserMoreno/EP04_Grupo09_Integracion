@@ -46,6 +46,7 @@ router.post("/api/login", async (req, res) => {
       pass: true,
       message: "Autenticación Exitosa",
       userName: mesero.usuario,
+      nombre: mesero.nombre,
       token,
     };
 

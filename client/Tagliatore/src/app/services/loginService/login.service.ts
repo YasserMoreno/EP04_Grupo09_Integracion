@@ -13,12 +13,13 @@ export class LoginService {
   constructor(private http: HttpClient, private router: Router) { }
 
   login(usuario: string, password: string): Observable<any> {
-    return this.http.post<{ token: string, userName: string, error?: string }>(this.loginUrl, { usuario, password }).pipe(
+    return this.http.post<{ token: string, userName: string, nombre: string, error?: string }>(this.loginUrl, { usuario, password }).pipe(
       tap(response => {
         // Si la respuesta tiene el token, el login es exitoso
         if (response.token) {
           sessionStorage.setItem('token', response.token);
           sessionStorage.setItem('userName', response.userName);
+          sessionStorage.setItem('nombre', response.nombre);
         }
       }),
       catchError((error: any) => {
@@ -37,6 +38,7 @@ export class LoginService {
     if (this.isSessionStorageAvailable()) {
       sessionStorage.removeItem('token');
       sessionStorage.removeItem('userName');
+      sessionStorage.removeItem('nombre');
     }
     this.router.navigate(['/login']);
   }
@@ -53,6 +55,9 @@ export class LoginService {
       return sessionStorage.getItem('userName');
     }
     return null;
+  }
+  getNombre(): string | null {
+    return sessionStorage.getItem('nombre');
   }
 
   isLoggedIn(): boolean {
