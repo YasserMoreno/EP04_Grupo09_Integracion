@@ -16,19 +16,18 @@ import { RouterModule } from '@angular/router';
 })
 export class CategoriasComponent implements OnInit {
 
-  categorias: Categoria[] = []; // Definimos la propiedad para almacenar las categorías
+  categorias: Categoria[] = []; 
 
   constructor(private categoriaService: CategoriaService) { }
 
   ngOnInit(): void {
-    this.getCategorias(); // Llamamos al método para obtener las categorías al inicializar el componente
+    this.getCategorias(); 
   }
 
-  // Método para obtener todas las categorías desde el servicio
   getCategorias(): void {
     this.categoriaService.getCategorias().subscribe(
       (data) => {
-        this.categorias = data; // Asignamos los datos obtenidos a la propiedad 'categorias'
+        this.categorias = data; 
       },
       (error) => {
         console.error('Error al obtener las categorías:', error);
@@ -36,12 +35,10 @@ export class CategoriasComponent implements OnInit {
     );
   }
 
-  // Método para eliminar una categoría
   deleteCategoria(id: string): void {
     if (confirm('¿Estás seguro de que deseas eliminar esta categoría?')) {
       this.categoriaService.deleteCategoria(id).subscribe(
         () => {
-          // Filtramos la categoría eliminada de la lista local
           this.categorias = this.categorias.filter(categoria => categoria._id !== id);
           console.log('Categoría eliminada exitosamente');
         },

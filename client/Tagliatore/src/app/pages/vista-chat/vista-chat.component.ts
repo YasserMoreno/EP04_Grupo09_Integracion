@@ -34,12 +34,8 @@ export class VistaChatComponent implements AfterViewChecked {
 
   loadChart(): void {
     if (isPlatformBrowser(this.platformId)) {
-      // console.log('Antes de importar ApexCharts')
       import('apexcharts').then(ApexChartsModule => {
-        // Acceder a la propiedad 'default' de ApexCharts al cargar dinámicamente
         const ApexCharts = ApexChartsModule.default;
-        // console.log('ApexCharts loaded:', ApexCharts);  // Verificar que ApexCharts se cargó correctamente
-
         if (ApexCharts && typeof ApexCharts === 'function') {
           this.dashboardScript(ApexCharts);
         } else {

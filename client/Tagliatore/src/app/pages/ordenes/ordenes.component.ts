@@ -4,7 +4,7 @@ import { FooterComponent } from "../../components/footer/footer.component";
 import { HeaderComponent } from "../../components/header/header.component";
 import { SidebarComponent } from "../../components/sidebar/sidebar.component";
 import { RouterModule } from '@angular/router';
-import { Orden } from '../../interfaces/orden'; // Importa la interfaz Orden
+import { Orden } from '../../interfaces/orden';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -50,9 +50,9 @@ export class OrdenesComponent implements OnInit {
   calcularTotal(orden: Orden): number {
     let total = 0;
     orden.platillos.forEach(platillo => {
-      total += platillo.platilloId.precio * platillo.cantidad; // Multiplica el precio por la cantidad
+      total += platillo.platilloId.precio * platillo.cantidad; 
     });
-    return total; // Retorna el total
+    return total; 
   }
   
 
@@ -63,7 +63,6 @@ export class OrdenesComponent implements OnInit {
         next: () => {
           this.loading = false;
           console.log(`Orden con ID ${id} eliminada correctamente`);
-          // Actualizar la lista de órdenes después de eliminar
           this.ordenes = this.ordenes.filter((orden) => orden._id !== id);
           alert('Orden eliminada exitosamente.');
         },

@@ -4,7 +4,6 @@ const authenticateToken = require('../../middlewares/auth');
 
 const router = express.Router();
 
-// Obtener una categoría por ID
 router.get('/api/categorias/:id', authenticateToken, async (req, res) => {
     try {
       const { id } = req.params;

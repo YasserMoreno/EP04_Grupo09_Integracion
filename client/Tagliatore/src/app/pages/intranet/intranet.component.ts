@@ -1,7 +1,6 @@
 import { Component, AfterViewChecked, Inject, PLATFORM_ID, ViewChild, ElementRef, ChangeDetectorRef, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { SidebarComponent } from "../../components/sidebar/sidebar.component";
-import ApexCharts from 'apexcharts';
 import { HeaderComponent } from "../../components/header/header.component";
 import { FooterComponent } from "../../components/footer/footer.component";
 import { RouterModule } from '@angular/router';
@@ -88,7 +87,7 @@ export class IntranetComponent implements AfterViewChecked {
         xaxis: {
           axisBorder: { show: false },
           axisTicks: { show: false },
-          categories: ["Lun", "Mar", "Mie", "Jue", "Vie", "Sab", "Dom"], // Categorías explícitas.
+          categories: ["Lun", "Mar", "Mie", "Jue", "Vie", "Sab", "Dom"], 
         },
         yaxis: { tickAmount: 4 },
         markers: { strokeColor: ["var(--bs-gray-300)", "var(--bs-primary)"], strokeWidth: 2 },

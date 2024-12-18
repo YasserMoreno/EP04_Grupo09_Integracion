@@ -1,6 +1,9 @@
+import { RouterTestingModule } from '@angular/router/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { IntranetComponent } from './intranet.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ActivatedRoute } from '@angular/router';
 
 describe('IntranetComponent', () => {
   let component: IntranetComponent;
@@ -8,7 +11,7 @@ describe('IntranetComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [IntranetComponent]
+      imports: [IntranetComponent, HttpClientTestingModule, RouterTestingModule]
     })
     .compileComponents();
     

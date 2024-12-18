@@ -16,28 +16,24 @@ import { FormsModule } from '@angular/forms';
 })
 export class AgregarCategoriaComponent {
 
-  categoria: Categoria = { _id: '', nombre: '', descripcion: '' }; // Definir la propiedad 'categoria' para almacenar los datos del formulario
+  categoria: Categoria = { _id: '', nombre: '', descripcion: '' };
 
   constructor(
     private categoriaService: CategoriaService,
-    private router: Router // Inyectamos el Router para redirigir al usuario
+    private router: Router 
   ) { }
 
-  // Método para agregar una nueva categoría
   agregarCategoria(): void {
     this.categoriaService.createCategoria(this.categoria).subscribe(
       (response) => {
         console.log('Categoría creada con éxito:', response);
         
-        // Mostrar un aviso en el navegador
         alert('Categoría agregada con éxito');
         
-        // Redirigir al usuario a la página de categorías
         this.router.navigate(['/categorias']);
       },
       (error) => {
         console.error('Error al crear la categoría:', error);
-        // Mostrar un mensaje de error
         alert('Ocurrió un error al agregar la categoría');
       }
     );

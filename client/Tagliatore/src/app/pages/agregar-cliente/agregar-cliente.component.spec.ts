@@ -1,6 +1,9 @@
+import { RouterTestingModule } from '@angular/router/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AgregarClienteComponent } from './agregar-cliente.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ActivatedRoute } from '@angular/router';
 
 describe('AgregarClienteComponent', () => {
   let component: AgregarClienteComponent;
@@ -8,7 +11,7 @@ describe('AgregarClienteComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AgregarClienteComponent]
+      imports: [AgregarClienteComponent, HttpClientTestingModule, RouterTestingModule]
     })
     .compileComponents();
     

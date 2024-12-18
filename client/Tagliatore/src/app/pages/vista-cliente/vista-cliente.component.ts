@@ -18,7 +18,6 @@ export class VistaClienteComponent {
     if (this.dni && this.dni.length === 8) {
       this.dniIngresado = true;
     } else {
-      // Puedes agregar aquí manejo de errores o validaciones adicionales
       alert('Por favor, ingrese un DNI válido de 8 dígitos');
     }
   }

@@ -1,6 +1,8 @@
+import { RouterTestingModule } from '@angular/router/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AgregarCategoriaComponent } from './agregar-categoria.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('AgregarCategoriaComponent', () => {
   let component: AgregarCategoriaComponent;
@@ -8,7 +10,7 @@ describe('AgregarCategoriaComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AgregarCategoriaComponent]
+      imports: [AgregarCategoriaComponent, HttpClientTestingModule, RouterTestingModule]
     })
     .compileComponents();
     

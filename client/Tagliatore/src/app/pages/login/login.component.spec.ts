@@ -16,7 +16,7 @@ describe('LoginComponent', () => {
     servicioLoginMock = jasmine.createSpyObj('LoginService', ['login']);
 
     await TestBed.configureTestingModule({
-      imports: [LoginComponent, FormsModule, RouterTestingModule, HttpClientTestingModule],
+      imports: [FormsModule, RouterTestingModule, HttpClientTestingModule],
       providers: [{ provide: LoginService, useValue: servicioLoginMock }]
     })
     .compileComponents();
@@ -24,6 +24,10 @@ describe('LoginComponent', () => {
     fixture = TestBed.createComponent(LoginComponent);
     componente = fixture.componentInstance;
     fixture.detectChanges();
+
+    // Mock de localStorage
+    spyOn(localStorage, 'setItem');
+    spyOn(localStorage, 'getItem').and.returnValue('fake_token'); // Simula que ya existe un token
   });
 
   it('debería crear el componente', () => {
@@ -38,7 +42,7 @@ describe('LoginComponent', () => {
     expect(componente.passwordFieldType).toBe('password');
   });
 
-  it('debería llamar al servicio loginService.login y navegar en caso de login exitoso', () => {
+  it('debería llamar al servicio loginService.login y almacenar el token en localStorage', () => {
     const respuestaMock = { token: 'fake_token' };
     servicioLoginMock.login.and.returnValue(of(respuestaMock));
 
@@ -46,8 +50,12 @@ describe('LoginComponent', () => {
     componente.password = 'isil123';
     componente.onLogin();
 
-    expect(servicioLoginMock.login).toHaveBeenCalledWith('testUser', 'testPass');
-    expect(window.location.href).toBe('/intranet');
+    // Verifica que el servicio se haya llamado con los valores correctos
+    expect(servicioLoginMock.login).toHaveBeenCalledWith('juangomez', 'isil123');
+    // Verifica que el token haya sido guardado en localStorage
+    expect(localStorage.setItem).toHaveBeenCalledWith('token', 'fake_token');
+    // Verifica la redirección (simulada, ya que estamos en pruebas)
+    expect(componente['router'].navigate).toHaveBeenCalledWith(['/intranet']);
   });
 
   it('debería mostrar un mensaje de error cuando el login falle', () => {

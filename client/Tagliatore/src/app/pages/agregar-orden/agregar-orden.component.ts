@@ -5,7 +5,7 @@ import { SidebarComponent } from "../../components/sidebar/sidebar.component";
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { OrdenService } from './../../services/ordenService/orden.service';
 import { Orden } from '../../interfaces/orden';
-import { Router } from '@angular/router';  // Para redireccionar al agregar la orden
+import { Router } from '@angular/router'; 
 import { Cliente } from '../../interfaces/cliente';
 import { Mesa } from '../../interfaces/mesa';
 import { Mesero } from '../../interfaces/mesero';
@@ -48,7 +48,6 @@ export class AgregarOrdenComponent implements OnInit {
     private meseroService: MeseroService,
     private platilloService: PlatilloService,
     private mesaService: MesaService, 
-    private activatedRoute: ActivatedRoute,
     private router: Router,
     private cdRef: ChangeDetectorRef
   ) {}

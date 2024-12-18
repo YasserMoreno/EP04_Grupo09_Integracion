@@ -4,7 +4,6 @@ const authenticateToken = require('../../middlewares/auth');
 
 const router = express.Router();
 
-// Obtener todos los platillos
 router.get('/api/platillos', authenticateToken, async (req, res) => {
   try {
     const platillos = await Platillo.find().populate('categoriaId', 'nombre');

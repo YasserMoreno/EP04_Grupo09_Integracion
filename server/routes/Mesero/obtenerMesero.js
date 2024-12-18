@@ -4,17 +4,16 @@ const authenticateToken = require('../../middlewares/auth');
 
 const router = express.Router();
 
-// Ruta para obtener un mesero por ID
 router.get('/api/meseros/:id', authenticateToken, async (req, res) => {
   try {
-    const { id } = req.params; // Obtener el ID de los parámetros de la URL
-    const mesero = await Mesero.findById(id); // Buscar el mesero por ID
+    const { id } = req.params; 
+    const mesero = await Mesero.findById(id); 
 
     if (!mesero) {
       return res.status(404).send({ mensaje: 'Mesero no encontrado' });
     }
 
-    res.status(200).send(mesero); // Responder con los datos del mesero encontrado
+    res.status(200).send(mesero);
   } catch (error) {
     res.status(500).send({ error: `Error al obtener el mesero: ${error.message}` });
   }

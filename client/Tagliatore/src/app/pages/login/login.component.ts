@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { LoginService } from '../../services/loginService/login.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +18,10 @@ export class LoginComponent {
   loading: boolean = false;
   passwordFieldType: string = 'password';
 
-  constructor(private loginService: LoginService) { }
+  constructor(
+    private router: Router,
+    private loginService: LoginService
+  ) { }
 
   onLogin(): void {
     this.loading = true;
@@ -27,7 +30,7 @@ export class LoginComponent {
         this.loading = false;
         console.log('Login exitoso:', response);
         if (response.token) {
-          window.location.href = '/intranet';
+          this.router.navigate(['/intranet']);
         } else if (response.error) {
           this.errorMessage = response.error; 
         }

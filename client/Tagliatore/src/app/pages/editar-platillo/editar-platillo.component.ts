@@ -3,7 +3,7 @@ import { PlatilloService } from '../../services/platilloService/platillo.service
 import { CategoriaService } from '../../services/categoriaService/categoria.service';
 import { Platillo } from '../../interfaces/platillo';
 import { Categoria } from '../../interfaces/categoria';
-import { ActivatedRoute, Router } from '@angular/router';  // Asegúrate de importar Router
+import { ActivatedRoute, Router } from '@angular/router'; 
 import { FooterComponent } from '../../components/footer/footer.component';
 import { HeaderComponent } from '../../components/header/header.component';
 import { SidebarComponent } from '../../components/sidebar/sidebar.component';
@@ -26,19 +26,17 @@ export class EditarPlatilloComponent implements OnInit {
     ingredientes: [],
     precio: 0,
     imagenes: [],
-    categoriaId: { _id: '', nombre: '' } // Relación con la categoría
+    categoriaId: { _id: '', nombre: '' } 
   };
   
-  categorias: Categoria[] = []; // Lista de categorías
-
-  // Esta propiedad se utilizará para capturar las URLs de imágenes ingresadas como string
+  categorias: Categoria[] = []; 
   imagenesString: string = '';
 
   constructor(
     private platillosService: PlatilloService,
     private categoriaService: CategoriaService,
     private route: ActivatedRoute,
-    private router: Router  // Inyectamos Router aquí
+    private router: Router  
   ) {}
 
   ngOnInit(): void {
@@ -63,7 +61,6 @@ export class EditarPlatilloComponent implements OnInit {
       this.platillosService.getPlatilloById(id).subscribe({
         next: (data: Platillo) => {
           this.platilloData = data;
-          // Convertir las URLs de las imágenes en un string separado por saltos de línea
           this.imagenesString = data.imagenes.join('\n');
         },
         error: (err) => {
@@ -73,21 +70,18 @@ export class EditarPlatilloComponent implements OnInit {
     }
   }
 
-  // Función para separar los links de las imágenes y almacenarlas en el array de imagenes
   updateImageLinks(): void {
     this.platilloData.imagenes = this.imagenesString
-      .split('\n')  // Separar por saltos de línea
-      .map(url => url.trim())  // Eliminar espacios innecesarios
-      .filter(url => url.length > 0);  // Filtrar los valores vacíos
+      .split('\n') 
+      .map(url => url.trim())  
+      .filter(url => url.length > 0);  
   }
 
-  // Función para eliminar una imagen
   removeImage(index: number): void {
     this.platilloData.imagenes.splice(index, 1);
   }
 
   guardarCambios(): void {
-    // Actualizar las imágenes con los links ingresados
     this.updateImageLinks();
 
     const id = this.route.snapshot.paramMap.get('id');
@@ -95,14 +89,14 @@ export class EditarPlatilloComponent implements OnInit {
       const updatedPlatillo: Platillo = {
         ...this.platilloData,
         imagenes: this.platilloData.imagenes,
-        updatedAt: new Date().toISOString() // Fecha de actualización
+        updatedAt: new Date().toISOString() 
       };
 
       this.platillosService.putPlatillo(id, updatedPlatillo).subscribe({
         next: (response) => {
           console.log('Platillo actualizado:', response);
           alert('Platillo actualizado exitosamente.');
-          this.router.navigate(['/platillos']);  // Redirigir a la página de platillos
+          this.router.navigate(['/platillos']); 
         },
         error: (err) => {
           console.error('Error al actualizar el platillo:', err);

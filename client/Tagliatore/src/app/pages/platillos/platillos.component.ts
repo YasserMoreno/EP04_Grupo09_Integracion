@@ -48,7 +48,6 @@ export class PlatillosComponent implements OnInit {
   }
 
   async deletePlatillo(id: string) {
-    // Confirmar antes de eliminar el platillo
     const confirmDelete = window.confirm('¿Estás seguro de que deseas eliminar este platillo? Esta acción no se puede deshacer.');
 
     if (confirmDelete) {

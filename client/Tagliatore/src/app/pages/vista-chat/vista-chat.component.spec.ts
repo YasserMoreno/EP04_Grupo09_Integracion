@@ -1,6 +1,8 @@
+import { RouterTestingModule } from '@angular/router/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { VistaChatComponent } from './vista-chat.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('VistaChatComponent', () => {
   let component: VistaChatComponent;
@@ -8,7 +10,7 @@ describe('VistaChatComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VistaChatComponent]
+      imports: [VistaChatComponent, HttpClientTestingModule, RouterTestingModule]
     })
     .compileComponents();
     

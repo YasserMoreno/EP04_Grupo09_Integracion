@@ -10,10 +10,8 @@ router.put('/api/meseros/:id', authenticateToken, async (req, res) => {
     const { id } = req.params;
     const { nombre, correo, telefono, usuario, password, activo } = req.body;
 
-    // Crear objeto de actualización dinámicamente
     const camposActualizados = { nombre, correo, telefono, usuario, activo };
 
-    // Si se recibe el password, encriptarlo y añadirlo al objeto de actualización
     if (password) {
       const hashedPassword = await bcrypt.hash(password, 10);
       camposActualizados.password = hashedPassword;

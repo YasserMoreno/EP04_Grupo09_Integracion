@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ClienteService } from '../../services/clienteService/cliente.service'; // Asegúrate de importar el servicio
+import { ClienteService } from '../../services/clienteService/cliente.service';
 import { Cliente } from '../../interfaces/cliente';
 import { RouterModule } from '@angular/router';
 import { SidebarComponent } from "../../components/sidebar/sidebar.component";
@@ -16,17 +16,15 @@ import { CommonModule } from '@angular/common';
 })
 export class ClientesComponent implements OnInit {
 
-  clientes: Cliente[] = [];  // Variable para almacenar los clientes
-  errorMessage: string | undefined;  // Variable para manejar errores
+  clientes: Cliente[] = [];  
+  errorMessage: string | undefined; 
 
   constructor(private clienteService: ClienteService) {}
 
   ngOnInit(): void {
-    // Llamada al servicio para obtener todos los clientes cuando el componente se inicialice
     this.getClientes();
   }
 
-  // Método para obtener todos los clientes
   getClientes(): void {
     this.clienteService.getClientes().subscribe({
       next: (response) => {
@@ -39,7 +37,6 @@ export class ClientesComponent implements OnInit {
     });
   }
 
-  // Método para eliminar un cliente
   deleteCliente(id: string): void {
     if (confirm('¿Estás seguro de que deseas eliminar este cliente?')) {
       this.clienteService.deleteCliente(id).subscribe({

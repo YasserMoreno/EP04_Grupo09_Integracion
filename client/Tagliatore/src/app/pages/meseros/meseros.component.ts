@@ -24,7 +24,6 @@ export class MeserosComponent implements OnInit {
     this.getMeseros();
   }
 
-  // Obtener todos los meseros
   getMeseros(): void {
     this.meseroService.getMeseros().subscribe(
       (data) => {
@@ -36,15 +35,13 @@ export class MeserosComponent implements OnInit {
     );
   }
 
-  // Eliminar un mesero (lógicamente, cambiando su estado activo)
   deleteMesero(id: string): void {
     if (confirm('¿Estás seguro de que deseas eliminar este mesero?')) {
       this.meseroService.deleteMesero(id).subscribe(
         () => {
-          // Buscamos al mesero por su ID y cambiamos su estado activo a false
           const mesero = this.meseros.find(m => m._id === id);
           if (mesero) {
-            mesero.activo = false;  // Cambiar estado de activo a false
+            mesero.activo = false; 
             console.log('Mesero marcado como eliminado (estado activo: false)');
           }
         },

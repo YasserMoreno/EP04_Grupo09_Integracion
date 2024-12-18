@@ -4,12 +4,12 @@ import { OrdenService } from './../../services/ordenService/orden.service';
 import { ClienteService } from './../../services/clienteService/cliente.service';
 import { MeseroService } from './../../services/meseroService/mesero.service';
 import { PlatilloService } from './../../services/platilloService/platillo.service';
-import { MesaService } from './../../services/mesaService/mesa.service';  // Servicio para mesas
+import { MesaService } from './../../services/mesaService/mesa.service'; 
 import { Orden } from '../../interfaces/orden';
 import { Cliente } from '../../interfaces/cliente';
 import { Mesero } from '../../interfaces/mesero';
 import { Platillo } from '../../interfaces/platillo';
-import { Mesa } from '../../interfaces/mesa';  // Asegúrate de tener la interfaz Mesa
+import { Mesa } from '../../interfaces/mesa';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FooterComponent } from '../../components/footer/footer.component';
@@ -36,7 +36,7 @@ export class EditarOrdenComponent implements OnInit {
   clientes: Cliente[] = [];
   meseros: Mesero[] = [];
   platillos: Platillo[] = [];
-  mesas: Mesa[] = [];  // Lista de mesas
+  mesas: Mesa[] = []; 
   loading: boolean = false;
   errorMessage: string = '';
 
@@ -128,7 +128,7 @@ export class EditarOrdenComponent implements OnInit {
 
   updateOrden(): void {
     this.loading = true;
-    console.log('Orden antes de actualizar:', this.orden);  // Verifica la lista de platillos
+    console.log('Orden antes de actualizar:', this.orden); 
     this.ordenService.updateOrden(this.orden._id, this.orden).subscribe({
       next: (data) => {
         this.loading = false;
@@ -146,8 +146,8 @@ export class EditarOrdenComponent implements OnInit {
 
   addPlatillo(): void {
     this.orden.platillos.push({ platilloId: {} as Platillo, cantidad: 1 });
-    this.cdRef.detectChanges();  // Fuerza la detección de cambios
-    console.log(this.orden.platillos);  // Verifica si el platillo se agrega correctamente
+    this.cdRef.detectChanges();  
+    console.log(this.orden.platillos); 
   }
   
 
@@ -156,8 +156,8 @@ export class EditarOrdenComponent implements OnInit {
   }
 
   updateCantidad(index: number, cantidad: number): void {
-    this.orden.platillos[index].cantidad = cantidad;  // Cambia la cantidad directamente
-    console.log(this.orden.platillos);  // Verifica si el cambio se refleja
+    this.orden.platillos[index].cantidad = cantidad;  
+    console.log(this.orden.platillos); 
   }
   
   

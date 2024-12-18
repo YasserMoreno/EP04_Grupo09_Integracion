@@ -16,7 +16,6 @@ import { FormsModule } from '@angular/forms';
 })
 export class AgregarClienteComponent {
 
-  // Definimos un objeto cliente vacío para almacenar los datos del formulario
   cliente: Cliente = {
     _id: '',
     nombre: '',
@@ -30,12 +29,10 @@ export class AgregarClienteComponent {
     private router: Router
   ) {}
 
-  // Método para agregar un nuevo cliente
   agregarCliente(): void {
     this.clienteService.createCliente(this.cliente).subscribe({
       next: (nuevoCliente) => {
         console.log('Cliente creado:', nuevoCliente);
-        // Redirigir al listado de clientes u otra vista después de agregar el cliente
         this.router.navigate(['/clientes']);
       },
       error: (err) => {
