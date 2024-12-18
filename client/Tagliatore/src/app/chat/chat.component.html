@@ -4,7 +4,7 @@
           [ngClass]="{'my-message': message.emisor === emisor, 'other-message': message.emisor !== emisor}">
           <div class="d-flex flex-row comment-row p-3">
               <div class="p-2"><img
-                      src="{{ message.emisor === 'Mesero' ? '../../../assets/images/profile/user-2.jpg' : '../../../assets/images/profile/user-1.jpg' }}"
+                      src="{{ message.emisor.includes('Mesero') ? '../../../assets/images/profile/user-2.jpg' : '../../../assets/images/profile/user-1.jpg' }}"
                       alt="user" width="50" class="rounded-circle"></div>
               <div class="comment-text ps-2 ps-md-3 w-100">
                   <h5 class="font-medium">{{ message.emisor }}</h5>
@@ -17,7 +17,6 @@
       </div>
   </div>
 </div>
-
 
 
 
