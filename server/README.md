@@ -1,6 +1,6 @@
 ## Inicialización de la base de datos
 
-Antes de iniciar la aplicación, debes poblar la base de datos con datos iniciales. Para ello, ejecuta el siguiente comando en la raíz del proyecto:
+Antes de iniciar la aplicación, debes poblar la base de datos con datos iniciales. Para ello, ejecuta el siguiente comando en el archivo server del proyecto:
 
 ```bash
 node poblarDB.js
