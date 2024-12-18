@@ -6,6 +6,10 @@ Antes de iniciar la aplicación, debes poblar la base de datos con datos inicial
 node poblarDB.js
 ```
 
+## Agregar el .env al proyecto
+
+Los datos del .env se encuentra en el archivo agregarEnv.txt
+
 ## Usuarios y Contraseñas sin encriptar para ingresar al login
 
 A continuación se muestran los usuarios y contraseñas sin encriptar para ingresar al login:
