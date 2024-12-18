@@ -28,6 +28,3 @@ Contraseña: anaPass101112
 
 Usuario: luisgomez
 Contraseña: luisPass131415
-
-Usuario: Yaxs786
-Contraseña: Yass3rMoren0*
