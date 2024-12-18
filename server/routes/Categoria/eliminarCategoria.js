@@ -1,9 +1,10 @@
 const express = require('express');
 const Categoria = require('../../db/models/Categoria');
+const authenticateToken = require('../../middlewares/auth');
 
 const router = express.Router();
 
-router.delete('/api/categorias/:id', async (req, res) => {
+router.delete('/api/categorias/:id', authenticateToken, async (req, res) => {
   try {
     const { id } = req.params;
 

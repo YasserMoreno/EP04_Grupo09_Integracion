@@ -1,9 +1,10 @@
 const express = require('express');
 const Mesa = require('../../db/models/Mesa');  
+const authenticateToken = require('../../middlewares/auth');
 
 const router = express.Router();
 
-router.post('/api/mesas', async (req, res) => {
+router.post('/api/mesas', authenticateToken,  async (req, res) => {
   const { numero } = req.body;
   
   try {

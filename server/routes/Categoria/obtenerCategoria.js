@@ -1,10 +1,11 @@
 const express = require('express');
 const Categoria = require('../../db/models/Categoria');
+const authenticateToken = require('../../middlewares/auth');
 
 const router = express.Router();
 
 // Obtener una categoría por ID
-router.get('/api/categorias/:id', async (req, res) => {
+router.get('/api/categorias/:id', authenticateToken, async (req, res) => {
     try {
       const { id } = req.params;
       const categoria = await Categoria.findById(id);

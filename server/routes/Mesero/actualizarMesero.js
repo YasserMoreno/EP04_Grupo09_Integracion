@@ -1,10 +1,11 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const Mesero = require('../../db/models/Mesero');
+const authenticateToken = require('../../middlewares/auth');
 
 const router = express.Router();
 
-router.put('/api/meseros/:id', async (req, res) => {
+router.put('/api/meseros/:id', authenticateToken, async (req, res) => {
   try {
     const { id } = req.params;
     const { nombre, correo, telefono, usuario, password, activo } = req.body;

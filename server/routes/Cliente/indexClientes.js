@@ -1,9 +1,10 @@
 const express = require("express");
 const Cliente = require("../../db/models/Cliente");
+const authenticateToken = require('../../middlewares/auth');
 
 const router = express.Router();
 
-router.get("/api/clientes", async (req, res) => {
+router.get("/api/clientes", authenticateToken, async (req, res) => {
   try {
     const clientes = await Cliente.find();
 

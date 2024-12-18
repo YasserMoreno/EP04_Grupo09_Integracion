@@ -1,9 +1,10 @@
 const express = require('express');
 const Platillo = require('../../db/models/Platillo');
+const authenticateToken = require('../../middlewares/auth');
 
 const router = express.Router();
 
-router.delete('/api/platillos/:id', async (req, res) => {
+router.delete('/api/platillos/:id', authenticateToken, async (req, res) => {
   try {
     const { id } = req.params;
 

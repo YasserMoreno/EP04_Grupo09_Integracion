@@ -1,9 +1,10 @@
 const express = require('express');
 const Cliente = require('../../db/models/Cliente');
+const authenticateToken = require('../../middlewares/auth');
 
 const router = express.Router();
 
-router.put('/api/clientes/:id', async (req, res) => {
+router.put('/api/clientes/:id', authenticateToken, async (req, res) => {
   try {
     const { id } = req.params;
     const { nombre, correo, telefono, dni } = req.body;

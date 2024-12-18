@@ -1,9 +1,10 @@
 const express = require('express');
 const Orden = require('../../db/models/Orden');
+const authenticateToken = require('../../middlewares/auth');
 
 const router = express.Router();
 
-router.delete('/api/ordenes/:id', async (req, res) => {
+router.delete('/api/ordenes/:id', authenticateToken, async (req, res) => {
   try {
     const { id } = req.params;
 

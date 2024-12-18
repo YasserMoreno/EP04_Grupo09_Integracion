@@ -1,9 +1,10 @@
 const express = require('express');
 const Cliente = require('../../db/models/Cliente');
+const authenticateToken = require('../../middlewares/auth');
 
 const router = express.Router();
 
-router.delete('/api/clientes/:id', async (req, res) => {
+router.delete('/api/clientes/:id', authenticateToken, async (req, res) => {
   try {
     const { id } = req.params;
 

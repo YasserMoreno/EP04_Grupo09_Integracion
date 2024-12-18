@@ -5,12 +5,6 @@ import { catchError, tap } from 'rxjs/operators';
 
 import { Mesero } from '../../interfaces/mesero'; // Importa la interfaz del mesero
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-  })
-};
-
 @Injectable({
   providedIn: 'root'
 })
@@ -22,6 +16,7 @@ export class MeseroService {
 
   // Obtener todos los meseros
   getMeseros(): Observable<Mesero[]> {
+    const httpOptions = this.createHttpOptions();
     return this.http.get<Mesero[]>(this.urlMeseros, httpOptions).pipe(
       tap(response => {
         console.log('Meseros obtenidos:', response);
@@ -32,6 +27,7 @@ export class MeseroService {
 
   // Obtener un mesero por ID
   getMeseroById(id: string): Observable<Mesero> {
+    const httpOptions = this.createHttpOptions();
     const url = `${this.urlMeseros}/${id}`;
     return this.http.get<Mesero>(url, httpOptions).pipe(
       tap(response => {
@@ -43,6 +39,7 @@ export class MeseroService {
 
   // Crear un nuevo mesero
   postMesero(mesero: Mesero): Observable<Mesero> {
+    const httpOptions = this.createHttpOptions();
     return this.http.post<Mesero>(this.urlMeseros, JSON.stringify(mesero), httpOptions).pipe(
       tap(response => {
         console.log('Mesero creado:', response);
@@ -53,6 +50,7 @@ export class MeseroService {
 
   // Actualizar un mesero existente
   putMesero(id: string, mesero: Mesero): Observable<Mesero> {
+    const httpOptions = this.createHttpOptions();
     const url = `${this.urlMeseros}/${id}`;
     return this.http.put<Mesero>(url, JSON.stringify(mesero), httpOptions).pipe(
       tap(response => {
@@ -64,6 +62,7 @@ export class MeseroService {
 
   // Eliminar un mesero
   deleteMesero(id: string): Observable<void> {
+    const httpOptions = this.createHttpOptions();
     const url = `${this.urlMeseros}/${id}`;
     return this.http.delete<void>(url, httpOptions).pipe(
       tap(() => {
@@ -71,6 +70,21 @@ export class MeseroService {
       }),
       catchError(this.handleError)
     );
+  }
+
+  // Crear encabezados HTTP con el token
+  private createHttpOptions(): { headers: HttpHeaders } {
+    const token = sessionStorage.getItem('token');
+    if (!token) {
+      console.error('No se encontró un token de autenticación en el almacenamiento');
+    }
+
+    return {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}` // Agrega el token al encabezado Authorization
+      })
+    };
   }
 
   // Manejo de errores centralizado

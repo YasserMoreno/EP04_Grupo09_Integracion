@@ -1,10 +1,11 @@
 const express = require('express');
 const Platillo = require('../../db/models/Platillo');
+const authenticateToken = require('../../middlewares/auth');
 
 const router = express.Router();
 
 // Obtener todos los platillos
-router.get('/api/platillos', async (req, res) => {
+router.get('/api/platillos', authenticateToken, async (req, res) => {
   try {
     const platillos = await Platillo.find().populate('categoriaId', 'nombre');
 

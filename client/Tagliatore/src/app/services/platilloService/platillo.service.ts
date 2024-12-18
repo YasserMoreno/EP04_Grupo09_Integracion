@@ -4,12 +4,6 @@ import { Platillo } from '../../interfaces/platillo';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-  })
-};
-
 @Injectable({
   providedIn: 'root'
 })
@@ -20,7 +14,9 @@ export class PlatilloService {
 
   constructor(private http: HttpClient) { }
 
+  // Obtener todos los platillos
   getPlatillos(): Observable<Platillo[]> {
+    const httpOptions = this.createHttpOptions();
     console.log('Haciendo solicitud GET a:', this.urlPlatillos);
     return this.http.get<Platillo[]>(this.urlPlatillos, httpOptions).pipe(
       tap(response => {
@@ -30,7 +26,9 @@ export class PlatilloService {
     );
   }
 
+  // Obtener un platillo por ID
   getPlatilloById(id: string): Observable<Platillo> {
+    const httpOptions = this.createHttpOptions();
     const url = `${this.urlPlatillos}/${id}`;
     console.log('Haciendo solicitud GET a:', url);
     return this.http.get<Platillo>(url, httpOptions).pipe(
@@ -41,7 +39,9 @@ export class PlatilloService {
     );
   }
 
+  // Crear un nuevo platillo
   postPlatillo(platillo: Platillo): Observable<{ nuevoPlatillo: Platillo; mensaje: string }> {
+    const httpOptions = this.createHttpOptions();
     console.log('Haciendo solicitud POST a:', this.urlPlatillos);
     return this.http.post<{ nuevoPlatillo: Platillo; mensaje: string }>(this.urlPlatillos, platillo, httpOptions).pipe(
       tap(response => {
@@ -51,7 +51,9 @@ export class PlatilloService {
     );
   }
 
+  // Eliminar un platillo
   deletePlatillo(id: string): Observable<{ platillo: Platillo; mensaje: string }> {
+    const httpOptions = this.createHttpOptions();
     const url = `${this.urlPlatillos}/${id}`;
     console.log('Haciendo solicitud DELETE a:', url);
     return this.http.delete<{ platillo: Platillo; mensaje: string }>(url, httpOptions).pipe(
@@ -63,8 +65,9 @@ export class PlatilloService {
     );
   }
 
-  // Nuevo método: Editar un platillo existente
+  // Editar un platillo existente
   putPlatillo(id: string, platillo: Platillo): Observable<{ platilloEditado: Platillo; mensaje: string }> {
+    const httpOptions = this.createHttpOptions();
     const url = `${this.urlPlatillos}/${id}`;
     console.log('Haciendo solicitud PUT a:', url);
     return this.http.put<{ platilloEditado: Platillo; mensaje: string }>(url, platillo, httpOptions).pipe(
@@ -77,6 +80,7 @@ export class PlatilloService {
 
   // Obtener platillos por categoría
   getPlatillosByCategoria(categoriaId: string): Observable<Platillo[]> {
+    const httpOptions = this.createHttpOptions();
     const url = `${this.urlPlatillos}/categoria/${categoriaId}`;
     console.log('Haciendo solicitud GET a:', url);
     return this.http.get<Platillo[]>(url, httpOptions).pipe(
@@ -85,6 +89,21 @@ export class PlatilloService {
       }),
       catchError(this.handleError)
     );
+  }
+
+  // Crear encabezados HTTP con token
+  private createHttpOptions(): { headers: HttpHeaders } {
+    const token = sessionStorage.getItem('token');
+    if (!token) {
+      console.error('No se encontró un token de autenticación en el almacenamiento');
+    }
+
+    return {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}` // Token en el encabezado Authorization
+      })
+    };
   }
 
   // Manejo de errores centralizado
