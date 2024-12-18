@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LoginService } from '../../services/loginService/login.service';  // Asegúrate de importar el servicio
+import { LoginService } from '../../services/loginService/login.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -16,6 +16,7 @@ export class LoginComponent {
   password: string = '';
   errorMessage: string = '';
   loading: boolean = false;
+  passwordFieldType: string = 'password';
 
   constructor(private loginService: LoginService) { }
 
@@ -25,13 +26,21 @@ export class LoginComponent {
       next: (response) => {
         this.loading = false;
         console.log('Login exitoso:', response);
-        window.location.href = '/intranet';
+        if (response.token) {
+          window.location.href = '/intranet';
+        } else if (response.error) {
+          this.errorMessage = response.error; 
+        }
       },
       error: (error) => {
         this.loading = false;
-        this.errorMessage = error.error?.message || 'Ocurrió un error en el login.';
+        this.errorMessage = error.error?.message || 'Ocurrió un error inesperado.';
         console.error('Error al iniciar sesión:', error);
       }
     });
+  }
+
+  togglePasswordVisibility(): void {
+    this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password';
   }
 }

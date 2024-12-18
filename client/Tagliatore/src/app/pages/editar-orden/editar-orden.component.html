@@ -80,7 +80,7 @@ data-sidebar-position="fixed" data-header-position="fixed">
                       required
                     >
                       <option value="" selected disabled>Selecciona un platillo</option>
-                      <option *ngFor="let platilloOption of platillos" [value]="platilloOption._id">{{ platilloOption.nombre }}</option>
+                      <option *ngFor="let platilloOption of platillos" [value]="platilloOption._id">{{ platilloOption.nombre }} (S/ {{ platilloOption.precio }})</option>
                     </select>
                     <input 
                       type="number" 

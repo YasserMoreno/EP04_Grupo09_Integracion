@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, tap } from 'rxjs';
+import { catchError, Observable, of, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,36 +13,66 @@ export class LoginService {
   constructor(private http: HttpClient, private router: Router) { }
 
   login(usuario: string, password: string): Observable<any> {
-    return this.http.post<{ token: string, userName: string, nombre: string }>(this.loginUrl, { usuario, password: password }).pipe(
+    return this.http.post<{ token: string, userName: string, nombre: string, error?: string }>(this.loginUrl, { usuario, password }).pipe(
       tap(response => {
-        sessionStorage.setItem('token', response.token);
-        sessionStorage.setItem('userName', response.userName);
-        sessionStorage.setItem('nombre', response.nombre);
-        console.log(response);
+        // Si la respuesta tiene el token, el login es exitoso
+        if (response.token) {
+          sessionStorage.setItem('token', response.token);
+          sessionStorage.setItem('userName', response.userName);
+          sessionStorage.setItem('nombre', response.nombre);
+        }
+      }),
+      catchError((error: any) => {
+        let errorMessage = 'Ocurrió un error en el login'; 
+        if (error?.error?.error) {
+          errorMessage = error.error.error;  
+        } else if (error?.error?.message) {
+          errorMessage = error.error.message;
+        }
+        return of({ error: errorMessage });
       })
     );
   }
 
   logout(): void {
-    sessionStorage.removeItem('token');
-    sessionStorage.removeItem('userName');
-    sessionStorage.removeItem('nombre');
+    if (this.isSessionStorageAvailable()) {
+      sessionStorage.removeItem('token');
+      sessionStorage.removeItem('userName');
+      sessionStorage.removeItem('nombre');
+    }
     this.router.navigate(['/login']);
   }
 
   getToken(): string | null {
-    return sessionStorage.getItem('token');
+    if (this.isSessionStorageAvailable()) {
+      return sessionStorage.getItem('token');
+    }
+    return null;
   }
 
   getUser(): string | null {
-    return sessionStorage.getItem('userName');
+    if (this.isSessionStorageAvailable()) {
+      return sessionStorage.getItem('userName');
+    }
+    return null;
   }
   getNombre(): string | null {
     return sessionStorage.getItem('nombre');
   }
 
   isLoggedIn(): boolean {
-    return !!sessionStorage.getItem('token');
+    if (this.isSessionStorageAvailable()) {
+      return !!sessionStorage.getItem('token');
+    }
+    return false;
+  }
+
+  private isSessionStorageAvailable(): boolean {
+    try {
+      return typeof window !== 'undefined' && typeof sessionStorage !== 'undefined';
+    } catch {
+      return false;
+    }
   }
 
 }

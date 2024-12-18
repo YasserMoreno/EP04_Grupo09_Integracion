@@ -24,6 +24,10 @@ router.post("/api/login", async (req, res) => {
       return res.status(404).send({ error: "Usuario no encontrado" });
     }
 
+    if (!mesero.activo) {
+      return res.status(403).send({ error: "Usuario inactivo" });
+    }
+
     const isMatch = await bcrypt.compare(password, mesero.password);
 
     if (!isMatch) {
