@@ -3,8 +3,8 @@ import { FooterComponent } from "../../components/footer/footer.component";
 import { HeaderComponent } from "../../components/header/header.component";
 import { SidebarComponent } from "../../components/sidebar/sidebar.component";
 import { RouterModule } from '@angular/router';
-import { MeseroService } from '../../services/meseroService/mesero.service';  // Importar el servicio
-import { Mesero } from '../../interfaces/mesero';  // Asegúrate de que la interfaz Mesero esté bien definida
+import { MeseroService } from '../../services/meseroService/mesero.service'; 
+import { Mesero } from '../../interfaces/mesero';  
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -32,12 +32,10 @@ export class AgregarMeseroComponent {
 
   constructor(private meseroService: MeseroService, private router: Router) {}
 
-  // Método que se ejecuta cuando se envía el formulario
   agregarMesero(): void {
     this.meseroService.postMesero(this.mesero).subscribe(
       (response) => {
         console.log('Mesero agregado con éxito', response);
-        // Redirigir a otra página después de agregar el mesero
         this.router.navigate(['/meseros']);
       },
       (error) => {
@@ -47,6 +45,6 @@ export class AgregarMeseroComponent {
   }
 
   togglePasswordVisibility(): void {
-    this.passwordVisible = !this.passwordVisible;  // Cambiar el estado de visibilidad
+    this.passwordVisible = !this.passwordVisible;  
   }
 }
