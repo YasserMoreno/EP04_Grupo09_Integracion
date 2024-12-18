@@ -4,7 +4,7 @@ export interface Mesero {
     correo: string;
     telefono: string;
     usuario: string;
-    password: string;
+    password?: string;
     activo: boolean; 
     createdAt?: string; 
     updatedAt?: string;

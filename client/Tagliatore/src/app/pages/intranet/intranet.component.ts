@@ -4,39 +4,49 @@ import { SidebarComponent } from "../../components/sidebar/sidebar.component";
 import ApexCharts from 'apexcharts';
 import { HeaderComponent } from "../../components/header/header.component";
 import { FooterComponent } from "../../components/footer/footer.component";
+import { RouterModule } from '@angular/router';
+import { PlatillosService } from '../../services/platilloService/platillo.service';
+import { Categoria } from '../../interfaces/categoria';
+import { Platillo } from '../../interfaces/platillo';
 
 @Component({
   selector: 'app-intranet',
   standalone: true,
-  imports: [SidebarComponent, CommonModule, HeaderComponent, FooterComponent],
+  imports: [SidebarComponent, CommonModule, HeaderComponent, FooterComponent, RouterModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './intranet.component.html',
   styleUrls: ['./intranet.component.css']
 })
 export class IntranetComponent implements AfterViewChecked {
+
+  platilloData: Platillo[] = [];
+  categoriaData: Categoria | null = null;
   isLoading = true;
+
   @ViewChild('trafficOverview') trafficOverview!: ElementRef;
+  private chart: any;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
-    private cdRef: ChangeDetectorRef
+    private cdRef: ChangeDetectorRef,
+    private platilloService: PlatillosService
   ) {}
 
+  ngOnInit(): void {
+    this.getPlatillos();
+  }
+
   ngAfterViewChecked(): void {
-    if (this.trafficOverview && this.trafficOverview.nativeElement) {
-      if (this.isLoading) {
-        this.loadChart();
-      }
+    if (this.trafficOverview && this.trafficOverview.nativeElement && this.isLoading) {
+      this.loadChart();
+      this.isLoading = false;
     }
   }
 
   loadChart(): void {
     if (isPlatformBrowser(this.platformId)) {
-      // console.log('Antes de importar ApexCharts')
       import('apexcharts').then(ApexChartsModule => {
-        // Acceder a la propiedad 'default' de ApexCharts al cargar dinámicamente
         const ApexCharts = ApexChartsModule.default;
-        // console.log('ApexCharts loaded:', ApexCharts);  // Verificar que ApexCharts se cargó correctamente
 
         if (ApexCharts && typeof ApexCharts === 'function') {
           this.dashboardScript(ApexCharts);
@@ -45,7 +55,7 @@ export class IntranetComponent implements AfterViewChecked {
         }
       }).catch(error => {
         console.error('Error loading ApexCharts:', error);
-      });      
+      });
     }
   }
 
@@ -54,11 +64,11 @@ export class IntranetComponent implements AfterViewChecked {
       const chartOptions = {
         series: [
           {
-            name: "New Users",
+            name: "Nuevas Ordenes",
             data: [5, 1, 17, 6, 15, 9, 6],
           },
           {
-            name: "Users",
+            name: "Ordenes",
             data: [7, 11, 4, 16, 10, 14, 10],
           },
         ],
@@ -75,20 +85,44 @@ export class IntranetComponent implements AfterViewChecked {
         legend: { show: false },
         stroke: { width: 2, curve: "smooth", dashArray: [8, 0] },
         grid: { borderColor: "rgba(0,0,0,0.1)", strokeDashArray: 3, xaxis: { lines: { show: false } } },
-        xaxis: { axisBorder: { show: false }, axisTicks: { show: false }, categories: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"] },
+        xaxis: {
+          axisBorder: { show: false },
+          axisTicks: { show: false },
+          categories: ["Lun", "Mar", "Mie", "Jue", "Vie", "Sab", "Dom"], // Categorías explícitas.
+        },
         yaxis: { tickAmount: 4 },
         markers: { strokeColor: ["var(--bs-gray-300)", "var(--bs-primary)"], strokeWidth: 2 },
         tooltip: { theme: "dark" },
       };
 
-      const chartElement = this.trafficOverview.nativeElement;
-      const chart = new ApexCharts(chartElement, chartOptions);
-      chart.render();
+      if (this.chart) {
+        this.chart.destroy();
+      }
+
+      this.chart = new ApexCharts(this.trafficOverview.nativeElement, chartOptions);
+      this.chart.render();
 
       this.cdRef.detectChanges();
-      this.isLoading = false;
     } catch (error) {
       console.error("Error al renderizar el gráfico de ApexCharts:", error);
     }
+  }
+
+  getPlatillos(): void {
+    console.log("Solicitando todos los platillos...");
+
+    this.platilloService.getPlatillos().subscribe({
+      next: (response) => {
+        console.log('Platillos obtenidos:', response);
+        this.platilloData = response;
+
+        if (response.length > 0) {
+          this.categoriaData = response[0].categoriaId || null;
+        }
+      },
+      error: (err: any) => {
+        console.error('Error al obtener los platillos:', err);
+      }
+    });
   }
 }

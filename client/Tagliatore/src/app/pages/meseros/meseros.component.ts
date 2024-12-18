@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { SidebarComponent } from "../../components/sidebar/sidebar.component";
 import { HeaderComponent } from "../../components/header/header.component";
 import { FooterComponent } from "../../components/footer/footer.component";
-import { MeseroService } from '../../services/meseroService/mesero.service';  // Importamos el servicio
+import { MeseroService } from '../../services/meseroService/mesero.service';
 import { Mesero } from '../../interfaces/mesero';
 import { CommonModule } from '@angular/common';
 
@@ -36,13 +36,17 @@ export class MeserosComponent implements OnInit {
     );
   }
 
-  // Eliminar un mesero por ID
+  // Eliminar un mesero (lógicamente, cambiando su estado activo)
   deleteMesero(id: string): void {
     if (confirm('¿Estás seguro de que deseas eliminar este mesero?')) {
       this.meseroService.deleteMesero(id).subscribe(
         () => {
-          this.meseros = this.meseros.filter(mesero => mesero._id !== id);  // Eliminar de la lista local
-          console.log('Mesero eliminado con éxito');
+          // Buscamos al mesero por su ID y cambiamos su estado activo a false
+          const mesero = this.meseros.find(m => m._id === id);
+          if (mesero) {
+            mesero.activo = false;  // Cambiar estado de activo a false
+            console.log('Mesero marcado como eliminado (estado activo: false)');
+          }
         },
         (error) => {
           console.error('Error al eliminar el mesero:', error);
