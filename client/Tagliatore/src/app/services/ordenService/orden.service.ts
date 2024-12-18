@@ -4,21 +4,17 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { Orden } from '../../interfaces/orden';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-  }),
-};
-
 @Injectable({
   providedIn: 'root',
 })
 export class OrdenService {
-  private urlOrdenes = 'http://localhost:3000/api/ordenes'; 
+  private urlOrdenes = 'http://localhost:3000/api/ordenes';
 
   constructor(private http: HttpClient) {}
 
+  // Obtener todas las órdenes
   getOrdenes(): Observable<Orden[]> {
+    const httpOptions = this.createHttpOptions();
     return this.http.get<Orden[]>(this.urlOrdenes, httpOptions).pipe(
       tap((response) => {
         console.log('Órdenes obtenidas:', response);
@@ -27,7 +23,9 @@ export class OrdenService {
     );
   }
 
+  // Obtener una orden por ID
   getOrdenById(id: string): Observable<Orden> {
+    const httpOptions = this.createHttpOptions();
     const url = `${this.urlOrdenes}/${id}`;
     return this.http.get<Orden>(url, httpOptions).pipe(
       tap((response) => {
@@ -37,7 +35,9 @@ export class OrdenService {
     );
   }
 
+  // Obtener órdenes por mesa ID
   getOrdenesByMesaId(mesaId: string): Observable<Orden[]> {
+    const httpOptions = this.createHttpOptions();
     const url = `${this.urlOrdenes}/mesa/${mesaId}`;
     return this.http.get<Orden[]>(url, httpOptions).pipe(
       tap((response) => {
@@ -47,7 +47,9 @@ export class OrdenService {
     );
   }
 
+  // Crear una nueva orden
   createOrden(orden: Orden): Observable<Orden> {
+    const httpOptions = this.createHttpOptions();
     return this.http.post<Orden>(
       this.urlOrdenes,
       JSON.stringify(orden),
@@ -60,7 +62,9 @@ export class OrdenService {
     );
   }
 
+  // Actualizar una orden existente
   updateOrden(id: string, orden: Orden): Observable<Orden> {
+    const httpOptions = this.createHttpOptions();
     const url = `${this.urlOrdenes}/${id}`;
     return this.http.put<Orden>(
       url,
@@ -74,7 +78,9 @@ export class OrdenService {
     );
   }
 
+  // Eliminar una orden
   deleteOrden(id: string): Observable<void> {
+    const httpOptions = this.createHttpOptions();
     const url = `${this.urlOrdenes}/${id}`;
     return this.http.delete<void>(url, httpOptions).pipe(
       tap(() => {
@@ -84,6 +90,22 @@ export class OrdenService {
     );
   }
 
+  // Crear encabezados HTTP con el token de autenticación
+  private createHttpOptions(): { headers: HttpHeaders } {
+    const token = sessionStorage.getItem('token');
+    if (!token) {
+      console.error('No se encontró un token de autenticación en el almacenamiento');
+    }
+
+    return {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}` // Token en el encabezado Authorization
+      })
+    };
+  }
+
+  // Manejo de errores centralizado
   private handleError(error: any) {
     console.error('Ocurrió un error:', error);
     return throwError(

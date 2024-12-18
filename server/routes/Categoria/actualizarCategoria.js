@@ -1,9 +1,10 @@
 const express = require('express');
 const Categoria = require('../../db/models/Categoria');
+const authenticateToken = require('../../middlewares/auth');
 
 const router = express.Router();
 
-router.put('/api/categorias/:id', async (req, res) => {
+router.put('/api/categorias/:id', authenticateToken, async (req, res) => {
   try {
     const { id } = req.params;
     const { nombre, descripcion } = req.body;

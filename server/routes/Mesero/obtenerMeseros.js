@@ -1,9 +1,10 @@
 const express = require('express');
 const Mesero = require('../../db/models/Mesero');
+const authenticateToken = require('../../middlewares/auth');
 
 const router = express.Router();
 
-router.get('/api/meseros', async (req, res) => {
+router.get('/api/meseros', authenticateToken, async (req, res) => {
   try {
     const meseros = await Mesero.find({ activo: true });
     res.status(200).send(meseros);

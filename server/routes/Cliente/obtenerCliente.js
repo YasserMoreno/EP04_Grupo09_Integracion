@@ -1,9 +1,10 @@
 const express = require("express");
 const Cliente = require("../../db/models/Cliente");
+const authenticateToken = require('../../middlewares/auth');
 
 const router = express.Router();
 
-router.get("/api/clientes/:id", async (req, res) => {
+router.get("/api/clientes/:id", authenticateToken, async (req, res) => {
   try {
     const { id } = req.params;
     const cliente = await Cliente.findById(id);

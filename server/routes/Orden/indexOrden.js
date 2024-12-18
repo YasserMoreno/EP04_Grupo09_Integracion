@@ -1,9 +1,10 @@
 const express = require('express');
 const Orden = require('../../db/models/Orden');
+const authenticateToken = require('../../middlewares/auth');
 
 const router = express.Router();
 
-router.get('/api/ordenes', async (req, res) => {
+router.get('/api/ordenes', authenticateToken, async (req, res) => {
   try {
     const ordenes = await Orden.find()
       .populate('mesaId') 

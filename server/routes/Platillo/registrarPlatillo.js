@@ -1,9 +1,10 @@
 const express = require('express');
 const Platillo = require('../../db/models/Platillo');
+const authenticateToken = require('../../middlewares/auth');
 
 const router = express.Router();
 
-router.post('/api/platillos', async (req, res) => {
+router.post('/api/platillos', authenticateToken, async (req, res) => {
   try {
     const { nombre, ingredientes, precio, imagenes, categoriaId } = req.body;
 

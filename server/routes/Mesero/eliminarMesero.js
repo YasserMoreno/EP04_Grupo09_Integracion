@@ -1,9 +1,10 @@
 const express = require('express');
 const Mesero = require('../../db/models/Mesero');
+const authenticateToken = require('../../middlewares/auth');
 
 const router = express.Router();
 
-router.delete('/api/meseros/:id', async (req, res) => {
+router.delete('/api/meseros/:id', authenticateToken, async (req, res) => {
   try {
     const { id } = req.params;
 

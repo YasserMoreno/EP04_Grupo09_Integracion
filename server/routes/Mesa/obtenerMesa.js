@@ -1,9 +1,10 @@
 const express = require('express');
 const Mesa = require('../../db/models/Mesa');  
+const authenticateToken = require('../../middlewares/auth');
 
 const router = express.Router();
 
-router.get('/api/mesas/:id', async (req, res) => {
+router.get('/api/mesas/:id', authenticateToken, async (req, res) => {
   const { id } = req.params;
   
   try {

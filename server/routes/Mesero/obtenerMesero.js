@@ -1,10 +1,11 @@
 const express = require('express');
 const Mesero = require('../../db/models/Mesero');
+const authenticateToken = require('../../middlewares/auth');
 
 const router = express.Router();
 
 // Ruta para obtener un mesero por ID
-router.get('/api/meseros/:id', async (req, res) => {
+router.get('/api/meseros/:id', authenticateToken, async (req, res) => {
   try {
     const { id } = req.params; // Obtener el ID de los parámetros de la URL
     const mesero = await Mesero.findById(id); // Buscar el mesero por ID

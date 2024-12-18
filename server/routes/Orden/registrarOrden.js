@@ -1,9 +1,10 @@
 const express = require('express');
 const Orden = require('../../db/models/Orden');
+const authenticateToken = require('../../middlewares/auth');
 
 const router = express.Router();
 
-router.post('/api/ordenes', async (req, res) => {
+router.post('/api/ordenes', authenticateToken, async (req, res) => {
   try {
     const { mesaId, clienteId, meseroId, platillos } = req.body;
 
