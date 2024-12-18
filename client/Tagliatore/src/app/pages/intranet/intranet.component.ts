@@ -5,7 +5,7 @@ import ApexCharts from 'apexcharts';
 import { HeaderComponent } from "../../components/header/header.component";
 import { FooterComponent } from "../../components/footer/footer.component";
 import { RouterModule } from '@angular/router';
-import { PlatillosService } from '../../services/platilloService/platillo.service';
+import { PlatilloService } from '../../services/platilloService/platillo.service';
 import { Categoria } from '../../interfaces/categoria';
 import { Platillo } from '../../interfaces/platillo';
 
@@ -29,7 +29,7 @@ export class IntranetComponent implements AfterViewChecked {
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private cdRef: ChangeDetectorRef,
-    private platilloService: PlatillosService
+    private platilloService: PlatilloService
   ) {}
 
   ngOnInit(): void {

@@ -13,7 +13,7 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class PlatillosService {
+export class PlatilloService {
 
   private urlPlatillos = "http://localhost:3000/api/platillos";
   mensajeDelete = "";

@@ -3,7 +3,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { OrdenService } from './../../services/ordenService/orden.service';
 import { ClienteService } from './../../services/clienteService/cliente.service';
 import { MeseroService } from './../../services/meseroService/mesero.service';
-import { PlatillosService } from './../../services/platilloService/platillo.service';
+import { PlatilloService } from './../../services/platilloService/platillo.service';
 import { MesaService } from './../../services/mesaService/mesa.service';  // Servicio para mesas
 import { Orden } from '../../interfaces/orden';
 import { Cliente } from '../../interfaces/cliente';
@@ -44,7 +44,7 @@ export class EditarOrdenComponent implements OnInit {
     private ordenService: OrdenService,
     private clienteService: ClienteService,
     private meseroService: MeseroService,
-    private platilloService: PlatillosService,
+    private platilloService: PlatilloService,
     private mesaService: MesaService, 
     private activatedRoute: ActivatedRoute,
     private router: Router,

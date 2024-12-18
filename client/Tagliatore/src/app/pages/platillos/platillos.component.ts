@@ -5,7 +5,7 @@ import { HeaderComponent } from "../../components/header/header.component";
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Platillo } from '../../interfaces/platillo';
 import { Categoria } from '../../interfaces/categoria';
-import { PlatillosService } from '../../services/platilloService/platillo.service';
+import { PlatilloService } from '../../services/platilloService/platillo.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -23,7 +23,7 @@ export class PlatillosComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private platilloService: PlatillosService
+    private platilloService: PlatilloService
   ) {}
 
   ngOnInit(): void {

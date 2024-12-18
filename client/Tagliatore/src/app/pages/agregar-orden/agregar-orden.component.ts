@@ -15,7 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { ClienteService } from '../../services/clienteService/cliente.service';
 import { MesaService } from '../../services/mesaService/mesa.service';
 import { MeseroService } from '../../services/meseroService/mesero.service';
-import { PlatillosService } from '../../services/platilloService/platillo.service';
+import { PlatilloService } from '../../services/platilloService/platillo.service';
 
 @Component({
   selector: 'app-agregar-orden',
@@ -46,7 +46,7 @@ export class AgregarOrdenComponent implements OnInit {
     private ordenService: OrdenService,
     private clienteService: ClienteService,
     private meseroService: MeseroService,
-    private platilloService: PlatillosService,
+    private platilloService: PlatilloService,
     private mesaService: MesaService, 
     private activatedRoute: ActivatedRoute,
     private router: Router,

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PlatillosService } from '../../services/platilloService/platillo.service';
+import { PlatilloService } from '../../services/platilloService/platillo.service';
 import { CategoriaService } from '../../services/categoriaService/categoria.service';
 import { Platillo } from '../../interfaces/platillo';
 import { Categoria } from '../../interfaces/categoria';
@@ -29,12 +29,12 @@ export class AgregarPlatilloComponent implements OnInit {
     categoriaId: { _id: '', nombre: '' }
   };
   
-  categorias: Categoria[] = []; // Lista de categorías disponibles
-  imagenesString: string = '';  // Propiedad para almacenar las URLs de imágenes ingresadas como string
-  imagePreviews: string[] = []; // Array para almacenar las URLs de las imágenes para vista previa
+  categorias: Categoria[] = []; 
+  imagenesString: string = '';  
+  imagePreviews: string[] = []; 
 
   constructor(
-    private platillosService: PlatillosService,
+    private platillosService: PlatilloService,
     private categoriaService: CategoriaService,
     private router: Router
   ) {}
@@ -43,7 +43,6 @@ export class AgregarPlatilloComponent implements OnInit {
     this.loadCategorias();
   }
 
-  // Cargar las categorías disponibles desde el servicio
   loadCategorias(): void {
     this.categoriaService.getCategorias().subscribe({
       next: (data: Categoria[]) => {
@@ -55,37 +54,33 @@ export class AgregarPlatilloComponent implements OnInit {
     });
   }
 
-  // Función para separar los links de las imágenes y almacenarlas en el array de imagenes
   updateImageLinks(): void {
     this.platilloData.imagenes = this.imagenesString
       .split('\n')
       .map(url => url.trim())
-      .filter(url => url.length > 0); // Filtrar los valores vacíos
+      .filter(url => url.length > 0); 
 
-    // Actualizar las vistas previas de todas las URLs ingresadas
     this.imagePreviews = this.platilloData.imagenes.filter(url => this.isValidImageUrl(url));
   }
 
-  // Validar si la URL es una imagen
   isValidImageUrl(url: string): boolean {
     return (url.match(/\.(jpeg|jpg|gif|png)$/) !== null);
   }
 
-  // Función para agregar un platillo
   agregarPlatillo(): void {
-    this.updateImageLinks(); // Actualizar las imágenes con los links ingresados
+    this.updateImageLinks(); 
 
     const newPlatillo: Platillo = {
       ...this.platilloData,
       imagenes: this.platilloData.imagenes,
-      createdAt: new Date().toISOString() // Fecha de creación
+      createdAt: new Date().toISOString()
     };
 
     this.platillosService.postPlatillo(newPlatillo).subscribe({
       next: (response) => {
         console.log('Platillo agregado:', response.nuevoPlatillo);
         alert('Platillo agregado exitosamente.');
-        this.router.navigate(['/platillos']); // Redirigir al listado de platillos
+        this.router.navigate(['/platillos']); 
       },
       error: (err) => {
         console.error('Error al agregar el platillo:', err);

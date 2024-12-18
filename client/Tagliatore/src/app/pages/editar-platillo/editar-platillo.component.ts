@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PlatillosService } from '../../services/platilloService/platillo.service';
+import { PlatilloService } from '../../services/platilloService/platillo.service';
 import { CategoriaService } from '../../services/categoriaService/categoria.service';
 import { Platillo } from '../../interfaces/platillo';
 import { Categoria } from '../../interfaces/categoria';
@@ -35,7 +35,7 @@ export class EditarPlatilloComponent implements OnInit {
   imagenesString: string = '';
 
   constructor(
-    private platillosService: PlatillosService,
+    private platillosService: PlatilloService,
     private categoriaService: CategoriaService,
     private route: ActivatedRoute,
     private router: Router  // Inyectamos Router aquí
